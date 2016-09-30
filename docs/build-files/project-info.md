@@ -69,4 +69,4 @@ Here are the licenses that require a license text file:
 * OtherDistributableOpenSource - Other open source license that allows the code to be freely distributed
 * OtherNonDistributableOpenSource - Other open source license that doesn't allow the code to be freely distributed (i.e. GPL)
 
-[Next, we'll add some targets to our build file](targets)
+[Next, we'll add some dependencies to our build file](dependencies)
