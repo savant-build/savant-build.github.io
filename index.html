@@ -1,0 +1,60 @@
+---
+title: Welcome to the Savant Build Homepage
+layout: homepage
+---
+
+<article>
+  <div class="hero">
+    <div class="container">
+      <h2>Finally a build tool you don't have to battle with. It just works!</h2>
+      <img src="/images/homepage-illustration.png"/>
+    </div>
+  </div>
+  <section>
+    <p>
+      <strong>Getting started is as simple as:</strong>
+    </p>
+    <pre>
+      <code class="bash">
+$ wget http://savant.inversoft.org/org/savantbuild/savant-core/1.0.0/savant-1.0.0.tar.gz
+$ tar -xzvf
+$ savant-1.0.0/bin/sb --version
+      </code>
+    </pre>
+  </section>
+  <section>
+    <p>
+      <strong>Build files are as simple as:</strong>
+    </p>
+    <pre>
+      <code class="groovy">
+project(group: "org.example", name: "savant-example", version: "0.1.0", licenses: ["ApacheV2_0"])
+
+groovy = loadPlugin(id: "org.savantbuild.plugin:groovy:1.0.0")
+groovy.settings.groovyVersion = "2.4"
+groovy.settings.javaVersion = "1.8"
+
+target(name: "clean", description: "Cleans the project") {
+  groovy.clean()
+}
+
+target(name: "compile", description: "Compiles the project") {
+  groovy.compile()
+}
+      </code>
+    </pre>
+  </section>
+  <section>
+    <h2>What is Savant?</h2>
+    <p>
+      Savant is a modern build tool that uses a Groovy DSL for the build files. Savant is fully SemVer compliant and
+      handles the most complex dependency graphs easily. Savant uses a plugin approach to quickly adding complex build
+      logic to projects.
+    </p>
+    <p>
+      The main difference between Savant and other build systems is that Savant does not allow plugins to add targets
+      to the build. This decision makes Savant declarative and simplifies the entire system by removing the need to
+      manage inter-plugin dependencies (i.e. the JUnit plugin depends on the Java plugin).
+    </p>
+  </section>
+</article>

@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+{% include _head.html %}
+<body>
+{% include _header.html %}
+<article>
+  <div class="hero">
+    <div class="container">
+      <h1>{{ page.title }}</h1>
+    </div>
+  </div>
+  <section>
+    <nav>
+      <button><i class="fa fa-caret-right"></i>Doc Topics</button>
+      <ul>
+        <li><a href="/docs/" {% if page.url == "/docs/" %}class="active"{% endif %}>Docs Home</a></li>
+        <li>
+          <a href="/docs/build-files/" {% if page.url == "/docs/build-files/" %}class="active"{% endif %}>Build Files</a>
+          <ul>
+            <li><a href="/docs/build-files/project-info" {% if page.url == "/docs/build-files/project-info" %}class="active"{% endif %}>Project Info</a></li>
+            <li><a href="/docs/build-files/dependencies" {% if page.url == "/docs/build-files/dependencies" %}class="active"{% endif %}>Dependencies</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+    {% if page.markdown == 1 %}
+      {{ content | markdownify }}
+    {% else %}
+      {{ content }}
+    {% endif %}
+  </section>
+</article>
+</body>
+</html>

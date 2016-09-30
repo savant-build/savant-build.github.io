@@ -1,0 +1,299 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+@charset "utf-8";
+
+html {
+  font-family: 'Roboto', sans-serif;
+  font-size: 62.5%
+}
+
+body {
+  font-size: 1.6em;
+}
+
+h1 {
+  font-family: 'Roboto Slab', serif;
+}
+
+h2 {
+  @extend h1;
+  font-size: 2.4rem;
+}
+
+a {
+  color: #0096c7;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+p code {
+  -ms-word-wrap: break-word;
+  word-wrap: break-word;
+}
+
+table {
+  border-collapse: collapse;
+
+  td {
+    border: 1px solid #ccc;
+    padding: 0.5rem;
+  }
+
+  th {
+    @extend td;
+    background: #eee;
+  }
+}
+
+header {
+  background: #1f1f1f;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+
+  h1 {
+    left: -2.0rem;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: -1.3rem;
+    z-index: 15;
+
+    a {
+      background: url('/images/logo.png') no-repeat;
+      background-size: 21.5rem 7.5rem;
+      display: block;
+      font-size: 0;
+      height: 7.5rem;
+      width: 21.5rem;
+
+      @media only screen and (min-width: 77rem) {
+        background-size: 28.7rem 10rem;
+        height: 10rem;
+        width: 28.7rem;
+      }
+    }
+  }
+
+  nav {
+    height: 2.5rem;
+    text-align: right;
+    padding: 1rem;
+
+    @media only screen and (min-width: 77rem) {
+      height: 6.4rem;
+      padding: 0;
+    }
+
+    button {
+      background: none;
+      border: none;
+      cursor: pointer;
+
+      @media only screen and (min-width: 77rem) {
+        display: none;
+      }
+
+      i {
+        color: white;
+        font-size: 2.6rem;
+      }
+    }
+
+    ul {
+      background: black;
+      display: none;
+      left: 0;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      position: absolute;
+      text-align: left;
+      top: 4.5rem;
+      width: 100%;
+
+      @media only screen and (min-width: 77rem) {
+        background: transparent;
+        display: inline-block;
+        left: auto;
+        position: inherit;
+        top: auto;
+        width: auto;
+      }
+
+      li {
+        @media only screen and (min-width: 77rem) {
+          display: inline-block;
+        }
+
+        a {
+          border-bottom: 1px solid #333;
+          color: white;
+          display: block;
+          font-size: 1.4rem;
+          line-height: 1;
+          padding: 1.5rem;
+          text-decoration: none;
+          transition: all .3s ease;
+
+          @media only screen and (min-width: 77rem) {
+            border: none;
+            padding: 2.5rem;
+          }
+
+          &:hover {
+            background: #333;
+            border-left: 6px solid red;
+            text-decoration: none;
+
+            @media only screen and (min-width: 77rem) {
+              border: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.hero {
+  background: #5aadbb;
+  margin: 0;
+  padding: 5.5rem 1rem 1rem 1rem;
+
+  @media only screen and (min-width: 77rem) {
+    padding-top: 7.5rem;
+  }
+
+  .container {
+    @media only screen and (min-width: 77rem) {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+
+  h1 {
+    color: white;
+    font-size: 2.4rem;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    color: white;
+    font-size: 1.6rem;
+    font-weight: 400;
+    text-align: center;
+    text-transform: uppercase;
+
+    @media only screen and (min-width: 60rem) {
+      font-size: 2.4rem;
+    }
+
+    @media only screen and (min-width: 77rem) {
+      font-size: 3.0rem;
+      width: 40%;
+    }
+
+    @media only screen and (min-width: 100rem) {
+      font-size: 4.0rem;
+    }
+  }
+
+  img {
+    max-width: 100%;
+    position: relative;
+    top: 1.8rem;
+
+    @media only screen and (min-width: 77rem) {
+      font-size: 3.0rem;
+      width: 60%;
+    }
+  }
+}
+
+article nav {
+  @extend .container;
+  padding-top: 1rem;
+
+  button {
+    color: #0096c7;
+    cursor: pointer;
+    background: white;
+    border: 1px solid #0096c7;
+    margin: 0;
+    padding: 0.5rem;
+    text-align: left;
+    width: 100%;
+
+    i {
+      border-right: 1px solid #0096c7;
+      margin-left: 0.5rem;
+      margin-right: 1rem;
+      padding-right: 1rem;
+    }
+  }
+
+  > ul {
+    border: 1px solid #0096c7;
+    box-sizing: border-box;
+    display: none;
+    list-style: none;
+    position: absolute;
+    width: 100%;
+    z-index: 10;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+
+    a {
+      background: white;
+      border-bottom: 1px solid rgba(0, 0, 0, .2);
+      display: block;
+      padding: 0.5rem 1rem;
+      text-decoration: none;
+      transition: all .3s ease;
+
+      &:hover {
+        background: #bfe6ed;
+      }
+    }
+
+    a.active {
+      background: #5aadbb;
+      color: white;
+      font-style: italic;
+
+      &:hover {
+        background: #228596;
+      }
+    }
+
+    ul li a {
+      padding-left: 2rem;
+    }
+
+    li {
+      a {
+      }
+    }
+  }
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1200px;
+  position: relative;
+}
+
+article section {
+  @extend .container;
+  padding: 0 1.5rem;
+}

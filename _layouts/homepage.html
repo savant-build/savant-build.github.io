@@ -1,0 +1,12 @@
+<!doctype html>
+<html>
+{% include _head.html %}
+<body>
+{% include _header.html %}
+{% if page.markdown == 1 %}
+  {{ content | markdownify }}
+{% else %}
+  {{ content }}
+{% endif %}
+</body>
+</html>
