@@ -106,7 +106,7 @@ This will tell Savant that we have a build target named _compile_ and that it wi
 
 Execute the build like this:
 
-~~~~ bash
+~~~~ shell
 $ sb compile
 ~~~~ 
 

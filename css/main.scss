@@ -222,6 +222,7 @@ header {
 article nav {
   @extend .container;
   padding-top: 1rem;
+  z-index: 5;
 
   button {
     color: #0096c7;
@@ -231,13 +232,23 @@ article nav {
     margin: 0;
     padding: 0.5rem;
     text-align: left;
+    transition: all .3s ease;
     width: 100%;
+
+    &:hover {
+      background: #5aadbb;
+      color: white;
+    }
 
     i {
       border-right: 1px solid #0096c7;
       margin-left: 0.5rem;
       margin-right: 1rem;
       padding-right: 1rem;
+    }
+
+    &:hover i {
+      border-right: 1px solid white;
     }
   }
 
@@ -280,6 +291,10 @@ article nav {
 
     ul li a {
       padding-left: 2rem;
+
+      &:before {
+        content: '- '
+      }
     }
   }
 }
