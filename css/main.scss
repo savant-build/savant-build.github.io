@@ -58,25 +58,25 @@ header {
   z-index: 10;
 
   h1 {
-    left: -2.0rem;
+    left: 0;
     margin: 0;
     padding: 0;
     position: absolute;
-    top: -1.3rem;
+    top: 0;
     z-index: 15;
 
     a {
-      background: url('/images/logo.png') no-repeat;
-      background-size: 21.5rem 7.5rem;
+      background: url('/images/logo.png') no-repeat 0 0;
+      background-size: auto 5.5rem;
       display: block;
       font-size: 0;
-      height: 7.5rem;
-      width: 21.5rem;
+      height: 6rem;
+      width: 25rem;
 
       @media only screen and (min-width: 77rem) {
-        background-size: 28.7rem 10rem;
-        height: 10rem;
-        width: 28.7rem;
+        background-size: 17.7rem 7.5rem;
+        height: 7.5rem;
+        width: 17.7rem;
       }
     }
   }
@@ -172,15 +172,23 @@ header {
   }
 
   .container {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .homepage-container {
     @media only screen and (min-width: 77rem) {
+      align-items: center;
       display: flex;
       flex-direction: row;
-      align-items: center;
     }
   }
 
   h1 {
     color: white;
+    //display: inline-block;
     font-size: 2.4rem;
     font-weight: 400;
     text-transform: uppercase;
@@ -211,6 +219,12 @@ header {
     max-width: 100%;
     position: relative;
     top: 1.8rem;
+
+    &.right {
+      display: inline-block;
+      top: 0;
+      width: 6rem;
+    }
 
     @media only screen and (min-width: 77rem) {
       font-size: 3.0rem;
