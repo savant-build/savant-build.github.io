@@ -6,8 +6,8 @@ description: Find a bug? Have a pull request? Got a new feature idea? Great!
 
 Please submit all bugs, feature requests and feedback to us using the Github issue tracking system for each library and project:
 
-* [Savant Core (including the runtime)](https://github.com/savant-build/core/)
-* [Savant Dependency Management](https://github.com/savant-build/dependency-management/)
+* [Savant Core (including the runtime)](https://github.com/savant-build/savant-core/)
+* [Savant Dependency Management](https://github.com/savant-build/savant-dependency-management/)
 * [Database Plugin](https://github.com/savant-build/database-plugin/)
 * [Debian Plugin](https://github.com/savant-build/debian-plugin/)
 * [Dependency Plugin](https://github.com/savant-build/dependency-plugin/)
