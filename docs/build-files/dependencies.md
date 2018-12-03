@@ -125,11 +125,6 @@ There are 4 main workflow processes you can use from Savant. Each process has di
   * url - (Required) The URL to fetch from
   * username - (Optional) The username to use when downloading from the URL. This is used with HTTP Basic Authentication
   * password - (Optional) The password to use when downloading from the URL. This is used with HTTP Basic Authentication
-* scp - Fetches and publishes dependencies (or artifacts) to a server via SCP
-  * server - (Required) The server to fetch from (i.e. foo.example.com)
-  * location - (Required) The location on the server server to fetch from (i.e. /home/foobar/artifacts)
-  * username - (Required) The username to use when connecting to the server via SCP.
-  * password - (Optional) The password to use when connecting to the server via SCP. If this is not specified, then Savant will attempt to use public/private keys for authentication.
 * svn - Fetches and publishes dependencies (or artifacts) from a Subversion repository
   * repository - (Required) The Subversion repository URL to fetch from (i.e. http://foo.example.com/svn)
   * username - (Optional) The username to use when connecting to the Subversion repository.
