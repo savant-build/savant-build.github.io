@@ -7,7 +7,7 @@ description: Savant is a modern build tool that you don't have to battle with. I
 ## Getting started is as simple as:
 
 ~~~~ shell
-$ wget http://savant.inversoft.org/org/savantbuild/savant-core/1.0.0/savant-1.0.0.tar.gz
+$ wget https://repository.savantbuild.org/org/savantbuild/savant-core/1.0.0/savant-1.0.0.tar.gz
 $ tar -xzvf
 $ savant-1.0.0/bin/sb --version
 ~~~~

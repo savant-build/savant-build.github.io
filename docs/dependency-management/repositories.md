@@ -18,7 +18,7 @@ Company artifacts are usually IP and therefore most companies put these artifact
 
 Inversoft provides a free Savant repository for you to use. This repository is not like Maven Central in that it only contains the open source libraries and frameworks that Inversoft has added. If you want to help grow this repository, contact Brian Pontarelli at (brian@inversoft.com).
 
-The URL for the Inversoft repository is: http://savant.inversoft.org
+The URL for the Inversoft repository is: https://repository.savantbuild.org
 
 This repository is also the default repository that Savant will use when you specify the **standard()** set in your workflow like this:
 

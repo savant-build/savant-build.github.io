@@ -8,7 +8,7 @@ Getting started with Savant is simple. Follow these steps to get going:
 
 ## Step 1
 
-[Download the latest version of Savant](http://savant.inversoft.org/org/savantbuild/savant-core/1.0.0/savant-1.0.0.tar.gz)
+[Download the latest version of Savant](https://repository.savantbuild.org/org/savantbuild/savant-core/1.0.0/savant-1.0.0.tar.gz)
 
 ## Step 2
 
