@@ -102,8 +102,14 @@ You can also control the TestNG groups that are run by passing in a set of group
 groovyTestNG.test(groups: ["unit"])
 ~~~~ 
 
-Finally, you can run a single test using the command-line **test** switch like this:
+Finally, you can run one more tests using the command-line **test** switch like this:
 
 ~~~~ shell
-$ sb test --test=FooBarTest
-~~~~ 
+$ sb test --test=FooBarTest --test=BazTest
+~~~~
+
+You may optionally provide a fully qualified test name if you have more than one test named `FooBarTest`. For example:
+
+~~~~ shell
+$ sb test --test=org.savantbuild.action.FooBarTest
+~~~~
