@@ -113,3 +113,9 @@ You may optionally provide a fully qualified test name if you have more than one
 ~~~~ shell
 $ sb test --test=org.savantbuild.action.FooBarTest
 ~~~~
+
+You may optionally run only tests that failed from the last execution. 
+
+~~~~ shell
+$ sb test --onlyFailed
+~~~~
