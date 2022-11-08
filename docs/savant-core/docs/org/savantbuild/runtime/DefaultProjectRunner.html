@@ -215,7 +215,7 @@ implements <a href="../../../org/savantbuild/runtime/ProjectRunner.html" title="
                 org.savantbuild.security.MD5Exception,
                 org.savantbuild.dep.workflow.process.ProcessFailureException,
                 org.savantbuild.dep.PublishException,
-                org.savantbuild.dep.domain.VersionException</pre>
+                org.savantbuild.domain.VersionException</pre>
 <div class="block">Runs the targets by finding each target and then performing a graph traversal of that targets dependencies. This
  ensures that a target is not called twice.</div>
 <dl>
@@ -238,7 +238,7 @@ implements <a href="../../../org/savantbuild/runtime/ProjectRunner.html" title="
 <dd><code>org.savantbuild.security.MD5Exception</code> - If a dependency is corrupt.</dd>
 <dd><code>org.savantbuild.dep.PublishException</code> - If there was an error publishing an artifact.</dd>
 <dd><code>org.savantbuild.dep.workflow.process.ProcessFailureException</code> - If the downloading of a dependency fails.</dd>
-<dd><code>org.savantbuild.dep.domain.VersionException</code> - If any of the versions are not semantic.</dd>
+<dd><code>org.savantbuild.domain.VersionException</code> - If any of the versions are not semantic.</dd>
 </dl>
 </li>
 </ul>
