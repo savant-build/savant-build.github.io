@@ -63,13 +63,13 @@ groovyTestNG = loadPlugin(id: "org.savantbuild.plugin:groovy-testng:1.0.0")
 release = loadPlugin(id: "org.savantbuild.plugin:release-git:1.0.0")
 
 // Plugin settings
-groovy.settings.groovyVersion = "2.2"
-groovy.settings.javaVersion = "1.8"
+groovy.settings.groovyVersion = "4.0"
+groovy.settings.javaVersion = "17"
 groovy.settings.jarManifest = [
     "Savant-Plugin-Class": "com.mycompany.MyPlugin"
   ]
-groovyTestNG.settings.groovyVersion = "2.2"
-groovyTestNG.settings.javaVersion = "1.8"
+groovyTestNG.settings.groovyVersion = "4.0"
+groovyTestNG.settings.javaVersion = "17"
 
 target(name: "clean", description: "Cleans the project") {
   groovy.clean()

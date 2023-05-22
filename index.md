@@ -18,8 +18,8 @@ $ savant-1.0.0/bin/sb --version
 project(group: "org.example", name: "savant-example", version: "0.1.0", licenses: ["ApacheV2_0"])
 
 groovy = loadPlugin(id: "org.savantbuild.plugin:groovy:1.0.0")
-groovy.settings.groovyVersion = "2.4"
-groovy.settings.javaVersion = "1.8"
+groovy.settings.groovyVersion = "4.0"
+groovy.settings.javaVersion = "17"
 
 target(name: "clean", description: "Cleans the project") {
   groovy.clean()

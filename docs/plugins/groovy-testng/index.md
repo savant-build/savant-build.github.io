@@ -23,7 +23,7 @@ groovyTestNG = loadPlugin(id: "org.savantbuild.plugin:groovy-testng:1.0.0")
 The Groovy TestNG plugin requires a couple of configuration settings including the Groovy version and the Java version to execute the tests with. The settings for the plugin are configured via the **GroovyTestNGSettings** class. The **GroovyTestNGPlugin** class has a field named **settings** that is the main instance of this class. Here is an example of configuring the plugin:
 
 ~~~~ groovy
-groovyTestNG.settings.groovyVersion = "2.2"
+groovyTestNG.settings.groovyVersion = "4.0"
 groovyTestNG.settings.javaVersion = "1.7"
 ~~~~ 
 

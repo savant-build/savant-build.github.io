@@ -74,7 +74,7 @@ _Notice that this looks very similar to a normal dependency declaration, we have
 This directive loads the Java plugin version 0.2.0 and the plugin reference is assigned to a variable named ‘java’. Now that we have loaded the plugin, we need to configure it. The Java plugin requires us to define the JDK we are using to compile. We’ll start by setting the java version using the settings of the plugin like this:
 
 ~~~~ groovy
-java.settings.javaVersion = "1.8"
+java.settings.javaVersion = "17"
 ~~~~ 
 
 ## 4. Next, we need to create a configuration file for the Java plugin.

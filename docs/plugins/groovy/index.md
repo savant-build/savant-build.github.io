@@ -61,7 +61,7 @@ This changes the location of the source files from **src/main/groovy** and **src
 The Groovy plugin requires a couple of configuration settings including the Groovy compiler version and the Java version to compile with. The settings for the plugin are configured via the **GroovySettings** class. The **GroovyPlugin** class has a field named **settings** that is the main instance of this class. Here is an example of configuring the plugin:
 
 ~~~~ groovy
-groovy.settings.groovyVersion = "2.2"
+groovy.settings.groovyVersion = "4.0"
 groovy.settings.javaVersion = "1.7"
 ~~~~ 
 
