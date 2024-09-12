@@ -39,7 +39,7 @@ This workflow instructs Savant to publish the project's artifacts to the Subvers
 Next, include the [Release Git Plugin](/plugins/release-git/) in the build file:
 
 ~~~~ groovy
-release = loadPlugin(id: "org.savantbuild.plugin:release-git:0.1.0")
+def release = loadPlugin(id: "org.savantbuild.plugin:release-git:0.1.0")
 ~~~~ 
 
 ## Target

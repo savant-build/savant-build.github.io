@@ -17,7 +17,7 @@ $ savant-1.0.0/bin/sb --version
 ~~~~ groovy
 project(group: "org.example", name: "savant-example", version: "0.1.0", licenses: ["ApacheV2_0"])
 
-groovy = loadPlugin(id: "org.savantbuild.plugin:groovy:1.0.0")
+def groovy = loadPlugin(id: "org.savantbuild.plugin:groovy:1.0.0")
 groovy.settings.groovyVersion = "4.0"
 groovy.settings.javaVersion = "17"
 

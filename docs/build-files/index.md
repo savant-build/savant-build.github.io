@@ -67,7 +67,7 @@ The first target we need to add is a compile target that will compile all of our
 Plugins are dependencies just like the project dependencies we added above. However, they are note included in a dependency group, instead, we simply define the plugin dependency using the _loadPlugin_ directive. Here is how we include tje Java plugin in our build file:
 
 ~~~~ groovy
-java = loadPlugin(id: "org.savantbuild.plugin:java:0.2.0")
+def java = loadPlugin(id: "org.savantbuild.plugin:java:0.2.0")
 ~~~~ 
 
 _Notice that this looks very similar to a normal dependency declaration, we have only changed *dependency* to *loadPlugin*._

@@ -14,7 +14,7 @@ The Tomcat plugin allows you to setup Tomcat to run your project's web applicati
 Here is how you load this plugin:
 
 ~~~~ groovy
-tomcat = loadPlugin(id: "org.savantbuild.plugin:tomcat:1.0.0")
+def tomcat = loadPlugin(id: "org.savantbuild.plugin:tomcat:1.0.0")
 ~~~~ 
 
 ## Layout

@@ -12,7 +12,7 @@ The file plugin provides a number of methods that help you deal with files and a
 Here is how you load this plugin:
 
 ~~~~ groovy
-file = loadPlugin(id: "org.savantbuild.plugin:file:1.0.0")
+def file = loadPlugin(id: "org.savantbuild.plugin:file:1.0.0")
 ~~~~ 
 
 

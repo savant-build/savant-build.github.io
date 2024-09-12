@@ -13,7 +13,7 @@ The Savant Database Plugin provides the ability to work with databases. The feat
 Here is how you load this plugin:
 
 ~~~~ groovy
-database = loadPlugin(id: "org.savantbuild.plugin:database:1.0.0")
+def database = loadPlugin(id: "org.savantbuild.plugin:database:1.0.0")
 ~~~~ 
 
 ## Configuring the Plugin

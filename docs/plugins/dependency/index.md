@@ -14,7 +14,7 @@ The Savant Dependency Management Plugin provides the ability to work with projec
 Here is how you load this plugin:
 
 ~~~~ groovy
-dependency = loadPlugin(id: "org.savantbuild.plugin:dependency:1.0.0")
+def dependency = loadPlugin(id: "org.savantbuild.plugin:dependency:1.0.0")
 ~~~~ 
 
 

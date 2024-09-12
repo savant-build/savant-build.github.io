@@ -38,7 +38,7 @@ Savant plugins are simple objects. Methods on the object can be invoked by a bui
 Here is an example of how simple it is to compile C# code using Savant:
 
 ~~~~ groovy
-csharp = loadPlugin("org.savantbuild.plugin:csharp:1.0.0")
+def csharp = loadPlugin("org.savantbuild.plugin:csharp:1.0.0")
 csharp.settings.sdkVersion = "3.5"
 
 target(name: "compile") {

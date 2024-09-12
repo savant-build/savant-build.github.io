@@ -14,7 +14,7 @@ The Groovy plugin allows you to build Groovy projects. This plugin includes meth
 Here is how you load this plugin:
 
 ~~~~ groovy
-groovy = loadPlugin(id: "org.savantbuild.plugin:groovy:1.0.0")
+def groovy = loadPlugin(id: "org.savantbuild.plugin:groovy:1.0.0")
 ~~~~ 
 
 ## Layout

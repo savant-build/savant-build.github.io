@@ -14,7 +14,7 @@ The Spock plugin allows you to execute [Spock](https://code.google.com/p/spock/)
 Here is how you load this plugin:
 
 ~~~~ groovy
-spock = loadPlugin(id: "org.savantbuild.plugin:spock:0.1.2")
+def spock = loadPlugin(id: "org.savantbuild.plugin:spock:0.1.2")
 ~~~~ 
 
 ## Executing Tests

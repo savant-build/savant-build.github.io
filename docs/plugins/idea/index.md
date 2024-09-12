@@ -14,7 +14,7 @@ The IDEA plugins allows you to update your IntelliJ IDEA project files when your
 Here is how you load this plugin:
 
 ~~~~ groovy
-idea = loadPlugin(id: "org.savantbuild.plugin:idea:1.0.1")
+def idea = loadPlugin(id: "org.savantbuild.plugin:idea:1.0.1")
 ~~~~ 
 
 

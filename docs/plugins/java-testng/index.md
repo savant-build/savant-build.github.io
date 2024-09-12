@@ -14,7 +14,7 @@ The Java TestNG plugins allows you to execute TestNG tests in a Java project. Th
 Here is how you load this plugin:
 
 ~~~~ groovy
-javaTestNG = loadPlugin(id: "org.savantbuild.plugin:java-testng:1.0.0")
+def javaTestNG = loadPlugin(id: "org.savantbuild.plugin:java-testng:1.0.0")
 ~~~~ 
 
 

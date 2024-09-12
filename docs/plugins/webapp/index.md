@@ -14,7 +14,7 @@ This plugin allows you to build a web application for your project. This conform
 Here is how you load this plugin:
 
 ~~~~ groovy
-webapp = loadPlugin(id: "org.savantbuild.plugin:webapp:1.0.0")
+def webapp = loadPlugin(id: "org.savantbuild.plugin:webapp:1.0.0")
 ~~~~ 
 
 ## Layout

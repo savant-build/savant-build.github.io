@@ -14,7 +14,7 @@ The Release Git plugin allows you to perform a full release of a project stored 
 Here is how you load this plugin:
 
 ~~~~ groovy
-release = loadPlugin(id: "org.savantbuild.plugin:release-git:1.0.0")
+def release = loadPlugin(id: "org.savantbuild.plugin:release-git:1.0.0")
 ~~~~ 
 
 

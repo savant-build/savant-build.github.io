@@ -9,7 +9,7 @@ At this point, you should have a functional build file that might include target
 We'll assume that your project is a Java project and that you need to compile Java source files. To accomplish this task, we will include the Java plugin and assign it to a variable. This will look like this:
 
 ~~~~ groovy
-java = loadPlugin(id: "org.savantbuild.plugin:java:1.0.0")
+def java = loadPlugin(id: "org.savantbuild.plugin:java:1.0.0")
 ~~~~ 
 
 This code has to be put after the project and workflow definition because Savant uses the workflow to download and instantiate the plugin. The key to Savant's plugin mechanism is that Plugins are simply Groovy objects. They aren't abstracted in any way. That means after this line of code executes, the variable **java** will be in instance of the class org.savantbuild.plugin.java.JavaPlugin. Any public methods or fields on that instance can be invoked to perform parts of your build.
@@ -17,7 +17,7 @@ This code has to be put after the project and workflow definition because Savant
 For the Java plugin, you need to define the version of the JDK to compile with (in case you have multiple JDKs installed or need to compile with a JDK besides JDK 8 which Savant requires to run).
 
 ~~~~ groovy
-java = loadPlugin(id: "org.savantbuild.plugin:java:1.0.0")
+def java = loadPlugin(id: "org.savantbuild.plugin:java:1.0.0")
 java.settings.javaVersion = "1.7"
 ~~~~ 
 
@@ -42,7 +42,7 @@ project(group: "org.example", name: "my-project", version: "1.0", licenses: ["Ap
   }
 }
 
-java = loadPlugin(id: "org.savantbuild.plugin:java:1.0.0")
+def java = loadPlugin(id: "org.savantbuild.plugin:java:1.0.0")
 java.settings.javaVersion = "1.7"
 
 target(name: "clean", description: "Cleans out the build directory") {

@@ -14,7 +14,7 @@ The Java plugin allows you to build Java projects. This plugin includes methods 
 Here is how you load this plugin:
 
 ~~~~ groovy
-java = loadPlugin(id: "org.savantbuild.plugin:java:1.0.0")
+def java = loadPlugin(id: "org.savantbuild.plugin:java:1.0.0")
 ~~~~ 
 
 

@@ -57,10 +57,10 @@ project(group: "com.mycompany", name: "myplugin", version: "0.1.0", license: "Co
 }
 
 // Plugins
-dependency = loadPlugin(id: "org.savantbuild.plugin:dependency:1.0.0")
-groovy = loadPlugin(id: "org.savantbuild.plugin:groovy:1.0.0")
-groovyTestNG = loadPlugin(id: "org.savantbuild.plugin:groovy-testng:1.0.0")
-release = loadPlugin(id: "org.savantbuild.plugin:release-git:1.0.0")
+def dependency = loadPlugin(id: "org.savantbuild.plugin:dependency:1.0.0")
+def groovy = loadPlugin(id: "org.savantbuild.plugin:groovy:1.0.0")
+def groovyTestNG = loadPlugin(id: "org.savantbuild.plugin:groovy-testng:1.0.0")
+def release = loadPlugin(id: "org.savantbuild.plugin:release-git:1.0.0")
 
 // Plugin settings
 groovy.settings.groovyVersion = "4.0"
@@ -238,7 +238,7 @@ $ sb int
 Next, go to another project and add this code to its build.savant file:
 
 ~~~~ groovy
-myPlugin = loadPlugin("com.mycompany:myplugin:0.1.0-{integration}")
+def myPlugin = loadPlugin("com.mycompany:myplugin:0.1.0-{integration}")
 ~~~~ 
 
 You can now use the plugin from any project build file like this:
