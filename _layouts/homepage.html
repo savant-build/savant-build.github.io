@@ -122,5 +122,17 @@ target(name: "test",
   </main>
 
   {% include _footer.html %}
+  <style>
+    html:not(.dark) body { background-color: #ffffff; }
+    html:not(.dark) .bg-gradient-to-b { background: linear-gradient(to bottom, #f8fafc, #f1f5f9); }
+    html:not(.dark) .bg-slate-900\/50 { background-color: rgba(248, 250, 252, 0.5); }
+    html:not(.dark) .bg-slate-900 { background-color: #f8fafc; }
+    html:not(.dark) .border-slate-700 { border-color: #e2e8f0; }
+    html:not(.dark) .text-slate-400 { color: #64748b; }
+    html:not(.dark) .text-white { color: #0f172a; }
+    html:not(.dark) .text-sky-400 { color: #0284c7; }
+    html:not(.dark) .text-slate-500 { color: #94a3b8; }
+    html:not(.dark) .bg-slate-800 { background-color: #1e293b; }
+  </style>
 </body>
 </html>

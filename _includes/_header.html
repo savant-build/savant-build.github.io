@@ -56,4 +56,13 @@
       document.querySelectorAll('.light-icon').forEach(function(el) { el.style.display = isDark ? 'block' : 'none'; });
     })();
   </script>
+  <style>
+    html:not(.dark) header { background-color: #ffffff; border-color: #e2e8f0; }
+    html:not(.dark) header .text-slate-300 { color: #475569; }
+    html:not(.dark) header .text-slate-300:hover { color: #0f172a; }
+    html:not(.dark) header .text-slate-400 { color: #94a3b8; }
+    html:not(.dark) header .text-slate-400:hover { color: #0f172a; }
+    html:not(.dark) header .text-white { color: #0f172a; }
+    html:not(.dark) header #mobile-menu { background-color: #ffffff; border-color: #e2e8f0; }
+  </style>
 </header>

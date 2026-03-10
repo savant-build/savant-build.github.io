@@ -6,6 +6,7 @@
 @layer base {
   html {
     @apply font-sans;
+    scroll-behavior: smooth;
   }
 
   body {
@@ -92,6 +93,10 @@
 
   .prose p code, .prose li code {
     @apply bg-slate-800 text-slate-200 text-sm px-1.5 py-0.5 rounded border border-slate-700 font-mono;
+  }
+
+  html:not(.dark) .prose p code, html:not(.dark) .prose li code {
+    @apply bg-slate-100 text-slate-800 border-slate-200;
   }
 }
 
