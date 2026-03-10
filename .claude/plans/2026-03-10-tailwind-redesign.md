@@ -8,7 +8,7 @@
 
 **Tech Stack:** Jekyll, Tailwind CSS, PostCSS, autoprefixer, vanilla JS, Inter + JetBrains Mono fonts, GitHub Actions for CI/CD.
 
-**Spec:** `docs/superpowers/specs/2026-03-10-tailwind-redesign-design.md`
+**Spec:** `.claude/specs/2026-03-10-tailwind-redesign-design.md`
 
 ---
 
@@ -287,7 +287,7 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - README.md
-  - docs/superpowers
+  - .claude
 ```
 
 - [ ] **Step 2: Update Gemfile**
