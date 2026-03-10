@@ -1,67 +1,78 @@
 <!doctype html>
-<html>
+<html class="dark">
 {% include _head.html %}
-<body>
-{% include _header.html %}
-<article>
-  <div class="hero">
-    <div class="container">
-      <h1>{{ page.title }}</h1>
-      <img src="/images/box.png" class="right"/>
+<body class="bg-slate-950 dark:bg-slate-950 min-h-screen flex flex-col">
+  {% include _header.html %}
+
+  <div class="flex-1 pt-16 flex">
+    <!-- Left sidebar -->
+    <aside class="hidden lg:block w-60 flex-shrink-0 border-r border-slate-700 overflow-y-auto fixed top-16 bottom-0 bg-slate-950 dark:bg-slate-950 p-4">
+      {% include _docs-sidebar.html %}
+    </aside>
+
+    <!-- Mobile sidebar toggle -->
+    <button id="docs-sidebar-btn" class="lg:hidden fixed bottom-4 left-4 z-40 bg-sky-500 text-white p-3 rounded-full shadow-lg" aria-label="Open docs navigation">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+
+    <!-- Mobile sidebar drawer -->
+    <div id="docs-sidebar-drawer" class="hidden lg:hidden fixed inset-0 z-50">
+      <div class="absolute inset-0 bg-black/60" id="docs-sidebar-overlay"></div>
+      <aside class="absolute left-0 top-0 bottom-0 w-72 bg-slate-950 border-r border-slate-700 p-4 overflow-y-auto">
+        <button id="docs-sidebar-close" class="mb-4 text-slate-400 hover:text-white" aria-label="Close">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+        {% include _docs-sidebar.html %}
+      </aside>
+    </div>
+
+    <!-- Main content area -->
+    <div class="flex-1 lg:ml-60 min-w-0">
+      <div class="max-w-5xl mx-auto flex">
+        <!-- Center content -->
+        <main id="docs-content" class="flex-1 min-w-0 px-6 sm:px-8 py-8">
+          <h1 class="text-3xl font-bold text-white mb-6">{{ page.title }}</h1>
+          <div class="prose">
+            {{ content }}
+          </div>
+        </main>
+
+        <!-- Right "on this page" sidebar -->
+        <aside id="toc-sidebar" class="hidden xl:block w-52 flex-shrink-0 py-8 pr-4">
+          <div class="sticky top-24">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">On this page</h4>
+            <ul id="toc-list" class="space-y-0.5 border-l border-slate-700 pl-3">
+            </ul>
+          </div>
+        </aside>
+      </div>
     </div>
   </div>
-  <section>
-    <nav>
-      <button><i class="fa fa-caret-right"></i>Doc Topics</button>
-      <ul>
-        <li><a href="/docs/" {% if page.url == "/docs/" %}class="active"{% endif %}>Docs Home</a></li>
-        <li>
-          <a href="/docs/build-files/" {% if page.url == "/docs/build-files/" %}class="active"{% endif %}>Build Files</a>
-          <ul>
-            <li><a href="/docs/build-files/project-info" {% if page.url == "/docs/build-files/project-info" %}class="active"{% endif %}>Project Info</a></li>
-            <li><a href="/docs/build-files/dependencies" {% if page.url == "/docs/build-files/dependencies" %}class="active"{% endif %}>Dependencies</a></li>
-            <li><a href="/docs/build-files/publications" {% if page.url == "/docs/build-files/publications" %}class="active"{% endif %}>Publications</a></li>
-            <li><a href="/docs/build-files/targets" {% if page.url == "/docs/build-files/targets" %}class="active"{% endif %}>Targets</a></li>
-            <li><a href="/docs/build-files/output" {% if page.url == "/docs/build-files/output" %}class="active"{% endif %}>Output</a></li>
-            <li><a href="/docs/build-files/failing-the-build" {% if page.url == "/docs/build-files/failing-the-build" %}class="active"{% endif %}>Failing the Build</a></li>
-            <li><a href="/docs/build-files/plugins" {% if page.url == "/docs/build-files/plugins" %}class="active"{% endif %}>Plugins</a></li>
-            <li><a href="/docs/build-files/variables" {% if page.url == "/docs/build-files/variables" %}class="active"{% endif %}>Variables</a></li>
-          </ul>
-        </li>
-        <li>
-          <a href="/docs/dependency-management/" {% if page.url == "/docs/dependency-management/" %}class="active"{% endif %}>Dependency Management</a>
-          <ul>
-            <li><a href="/docs/dependency-management/repositories" {% if page.url == "/docs/dependency-management/repositories" %}class="active"{% endif %}>Repositories</a></li>
-          </ul>
-        </li>
-        <li><a href="/docs/releasing" {% if page.url == "/docs/releasing" %}class="active"{% endif %}>Releasing a Project</a></li>
-        <li>
-          <a href="/docs/plugins/" {% if page.url == "/docs/plugins/" %}class="active"{% endif %}>Plugins</a>
-          <ul>
-            <li><a href="/docs/plugins/writing-plugins" {% if page.url == "/docs/plugins/writing-plugins" %}class="active"{% endif %}>Writing Plugins</a></li>
-            <li><a href="/docs/plugins/database/" {% if page.url == "/docs/plugins/database/" %}class="active"{% endif %}>Database</a></li>
-            <li><a href="/docs/plugins/debian/" {% if page.url == "/docs/plugins/debian/" %}class="active"{% endif %}>Debian</a></li>
-            <li><a href="/docs/plugins/dependency/" {% if page.url == "/docs/plugins/dependency/" %}class="active"{% endif %}>Dependency</a></li>
-            <li><a href="/docs/plugins/file/" {% if page.url == "/docs/plugins/file/" %}class="active"{% endif %}>File</a></li>
-            <li><a href="/docs/plugins/groovy/" {% if page.url == "/docs/plugins/groovy/" %}class="active"{% endif %}>Groovy</a></li>
-            <li><a href="/docs/plugins/groovy-testng/" {% if page.url == "/docs/plugins/groovy-testng/" %}class="active"{% endif %}>Groovy TestNG</a></li>
-            <li><a href="/docs/plugins/idea/" {% if page.url == "/docs/plugins/idea/" %}class="active"{% endif %}>IDEA</a></li>
-            <li><a href="/docs/plugins/java/" {% if page.url == "/docs/plugins/java/" %}class="active"{% endif %}>Java</a></li>
-            <li><a href="/docs/plugins/java-testng/" {% if page.url == "/docs/plugins/java-testng/" %}class="active"{% endif %}>Java TestNG</a></li>
-            <li><a href="/docs/plugins/release-git/" {% if page.url == "/docs/plugins/release-git/" %}class="active"{% endif %}>Release Git</a></li>
-            <li><a href="/docs/plugins/spock/" {% if page.url == "/docs/plugins/spock/" %}class="active"{% endif %}>Spock</a></li>
-            <li><a href="/docs/plugins/tomcat/" {% if page.url == "/docs/plugins/tomcat/" %}class="active"{% endif %}>Tomcat</a></li>
-            <li><a href="/docs/plugins/webapp/" {% if page.url == "/docs/plugins/webapp/" %}class="active"{% endif %}>Webapp</a></li>
-          </ul>
-        </li>
-      </ul>
-    </nav>
-    {% if page.markdown == 1 %}
-      {{ content | markdownify }}
-    {% else %}
-      {{ content }}
-    {% endif %}
-  </section>
-</article>
+
+  {% include _footer.html %}
+
+  <script src="/js/docs.js"></script>
+  <script>
+    // Mobile docs sidebar
+    var sidebarBtn = document.getElementById('docs-sidebar-btn');
+    var sidebarDrawer = document.getElementById('docs-sidebar-drawer');
+    var sidebarOverlay = document.getElementById('docs-sidebar-overlay');
+    var sidebarClose = document.getElementById('docs-sidebar-close');
+
+    function openSidebar() { sidebarDrawer.classList.remove('hidden'); }
+    function closeSidebar() { sidebarDrawer.classList.add('hidden'); }
+
+    if (sidebarBtn) sidebarBtn.addEventListener('click', openSidebar);
+    if (sidebarOverlay) sidebarOverlay.addEventListener('click', closeSidebar);
+    if (sidebarClose) sidebarClose.addEventListener('click', closeSidebar);
+  </script>
+
+  <style>
+    html:not(.dark) body { background-color: #ffffff; }
+    html:not(.dark) aside { background-color: #ffffff; border-color: #e2e8f0; }
+    html:not(.dark) .docs-sidebar a { color: #64748b; }
+    html:not(.dark) .docs-sidebar a:hover { color: #334155; }
+    html:not(.dark) .docs-sidebar a.text-white { color: #0284c7; }
+  </style>
 </body>
 </html>
