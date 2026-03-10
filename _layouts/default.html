@@ -1,22 +1,22 @@
 <!doctype html>
-<html>
+<html class="dark">
 {% include _head.html %}
-<body>
-{% include _header.html %}
-<article>
-  <div class="hero">
-    <div class="container">
-      <h1>{{ page.title }}</h1>
-      <img src="/images/box.png" class="right"/>
+<body class="bg-slate-950 dark:bg-slate-950 min-h-screen flex flex-col">
+  {% include _header.html %}
+
+  <main class="flex-1 pt-24 pb-16">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-3xl sm:text-4xl font-bold text-white mb-8">{{ page.title }}</h1>
+      <div class="prose">
+        {{ content }}
+      </div>
     </div>
-  </div>
-  <section>
-    {% if page.markdown == 1 %}
-      {{ content | markdownify }}
-    {% else %}
-      {{ content }}
-    {% endif %}
-  </section>
-</article>
+  </main>
+
+  {% include _footer.html %}
+
+  <style>
+    html:not(.dark) body { background-color: #ffffff; }
+  </style>
 </body>
 </html>
