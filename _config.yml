@@ -5,10 +5,23 @@ description: >
   your software. With a SemVer compliant dependency management system,
   Savant just works.
 baseurl: ""
-url: "http://savantbuild.org"
+url: "https://savantbuild.org"
 twitter_username: inversoft
-github_username:  savant-build
+github_username: savant-build
 
 # Build settings
 markdown: kramdown
-theme: minima
+highlighter: rouge
+
+permalink: pretty
+
+exclude:
+  - node_modules
+  - package.json
+  - package-lock.json
+  - postcss.config.js
+  - tailwind.config.js
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - .claude
