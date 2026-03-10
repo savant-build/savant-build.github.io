@@ -2,6 +2,8 @@
 layout: docs
 title: Database Plugin
 description: The database plugin allows you to create databases for testing your software.
+plugin: true
+plugin_name: Database
 ---
 
 The Savant Database Plugin provides the ability to work with databases. The features of the plugin are also the public methods of the plugin class so you can refer to the [Groovy Doc](docs/) for more information.

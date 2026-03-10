@@ -2,6 +2,8 @@
 layout: docs
 title: Debian Plugin
 description: The Debian plugin allows you to build DEB packages for your project.
+plugin: true
+plugin_name: Debian
 ---
 
 The Savant Debian Package Management Plugin provides the ability to build Debian package files (.deb). The features of the plugin are also the public methods of the plugin class so you can refer to the [Groovy Doc](docs/) for more information.

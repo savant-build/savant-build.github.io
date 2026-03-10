@@ -2,6 +2,8 @@
 layout: docs
 title: File Plugin
 description: The File plugin provides methods that allow you to create files, directories, ZIPs, TARs, etc.
+plugin: true
+plugin_name: File
 ---
 
 The file plugin provides a number of methods that help you deal with files and archives. The features of the plugin are also the public methods of the plugin class so you can refer to the [Groovy Doc](docs/) for more information.

@@ -2,6 +2,8 @@
 layout: docs
 title: Java TestNG Plugin
 description: The Java TestNG plugin allows you to execute your TestNG tests for your Java project.
+plugin: true
+plugin_name: Java TestNG
 ---
 
 The Java TestNG plugins allows you to execute TestNG tests in a Java project. The features of the plugin are also the public methods of the plugin class so you can refer to the [Groovy Doc](docs/) for more information.

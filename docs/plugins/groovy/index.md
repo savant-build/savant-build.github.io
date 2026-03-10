@@ -2,6 +2,8 @@
 layout: docs
 title: Groovy Plugin
 description: The Groovy plugin allows you to compile and JAR your Groovy source code.
+plugin: true
+plugin_name: Groovy
 ---
 
 The Groovy plugin allows you to build Groovy projects. This plugin includes methods for compiling, jarring, and cleaning a Groovy project. The features of the plugin are also the public methods of the plugin class so you can refer to the [Groovy Doc](docs/) for more information.

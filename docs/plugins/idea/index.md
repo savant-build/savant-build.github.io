@@ -2,6 +2,8 @@
 layout: docs
 title: IDEA Plugin
 description: The IDEA plugin generates classpath information for IntelliJ IDEA projects that reflect the project's dependencies.
+plugin: true
+plugin_name: IDEA
 ---
 
 The IDEA plugins allows you to update your IntelliJ IDEA project files when your project's dependencies change. This plugin does not currently generate IntelliJ IDEA project files. Pull requests for additional features are welcome though. ;)

@@ -2,6 +2,8 @@
 layout: docs
 title: Webapp Plugin
 description: The Webapp plugin allows you to setup your web application to run inside a JEE container.
+plugin: true
+plugin_name: Webapp
 ---
 
 This plugin allows you to build a web application for your project. This conforms to the JEE specification for web applications. This plugin has a number of settings that control how it behaves. In most cases, the defaults will work fine though. The features of the plugin are also the public methods of the plugin class so you can refer to the [Groovy Doc](docs/) for more information.

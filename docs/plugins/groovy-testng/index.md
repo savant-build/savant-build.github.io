@@ -2,6 +2,8 @@
 layout: docs
 title: Groovy TestNG Plugin
 description: The Groovy TestNG plugin allows you to run TestNG tests for your Groovy project.
+plugin: true
+plugin_name: Groovy TestNG
 ---
 
 The Groovy TestNG plugins allows you to execute TestNG tests in a Groovy project. The features of the plugin are also the public methods of the plugin class so you can refer to the [Groovy Doc](docs/) for more information.

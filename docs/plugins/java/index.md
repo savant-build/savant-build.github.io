@@ -2,6 +2,8 @@
 layout: docs
 title: Java Plugin
 description: The Java plugin allows you compile and JAR your project's Java source code.
+plugin: true
+plugin_name: Java
 ---
 
 The Java plugin allows you to build Java projects. This plugin includes methods for compiling, jarring, and cleaning a Java project. The features of the plugin are also the public methods of the plugin class so you can refer to the [Groovy Doc](docs/) for more information.

@@ -2,6 +2,8 @@
 layout: docs
 title: Dependency Plugin
 description: The Dependency plugin allows you to manage, copy, and download the project's dependencies.
+plugin: true
+plugin_name: Dependency
 ---
 
 The Savant Dependency Management Plugin provides the ability to work with project dependencies. The features of the plugin are also the public methods of the plugin class so you can refer to the [Groovy Doc](docs/) for more information.

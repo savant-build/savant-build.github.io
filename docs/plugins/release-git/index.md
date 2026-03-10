@@ -2,6 +2,8 @@
 layout: docs
 title: Release Git Plugin
 description: The Release Git plugin allows release a full version of your project that stored in a Git repository.
+plugin: true
+plugin_name: Release Git
 ---
 
 The Release Git plugin allows you to perform a full release of a project stored in a Git repository. This plugin has no settings. Everything that is required to release a Git project comes from the .git directory or the project build file. The features of the plugin are also the public methods of the plugin class so you can refer to the [Groovy Doc](docs/) for more information.

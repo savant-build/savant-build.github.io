@@ -2,6 +2,8 @@
 layout: docs
 title: Tomcat Plugin
 description: The Tomcat plugin allows you to setup Tomcat to run your project's web application.
+plugin: true
+plugin_name: Tomcat
 ---
 
 The Tomcat plugin allows you to setup Tomcat to run your project's web application. This project has a number of settings that control its behavior, but nothing is required and if your project conforms to the standard layout, this plugin will work out of the box. The features of the plugin are also the public methods of the plugin class so you can refer to the [Groovy Doc](docs/) for more information.

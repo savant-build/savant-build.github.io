@@ -2,6 +2,8 @@
 layout: docs
 title: Spock Plugin
 description: The Spock plugin allows you to run Spock tests in your project.
+plugin: true
+plugin_name: Spock
 ---
 
 The Spock plugin allows you to execute [Spock](https://code.google.com/p/spock/) specifications.
