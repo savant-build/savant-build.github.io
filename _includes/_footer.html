@@ -1,0 +1,19 @@
+<footer class="border-t border-slate-700 mt-16 dark:border-slate-700">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
+      <div class="flex items-center gap-6 text-sm">
+        <a href="/docs/" class="text-slate-400 hover:text-slate-200 no-underline transition-colors">Docs</a>
+        <a href="/download" class="text-slate-400 hover:text-slate-200 no-underline transition-colors">Download</a>
+        <a href="/contributing" class="text-slate-400 hover:text-slate-200 no-underline transition-colors">Contributing</a>
+        <a href="https://github.com/savant-build" class="text-slate-400 hover:text-slate-200 no-underline transition-colors" target="_blank" rel="noopener">GitHub</a>
+      </div>
+      <p class="text-sm text-slate-500">&copy; {{ 'now' | date: '%Y' }} Savant Build</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  html:not(.dark) footer { border-color: #e2e8f0; }
+  html:not(.dark) footer a { color: #94a3b8; }
+  html:not(.dark) footer a:hover { color: #334155; }
+</style>
