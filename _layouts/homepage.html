@@ -1,21 +1,126 @@
 <!doctype html>
-<html>
+<html class="dark">
 {% include _head.html %}
-<body>
-{% include _header.html %}
-<article>
-  <div class="hero">
-    <div class="container homepage-container">
-      <h2>Finally a build tool you don't have to battle with. It just works!</h2>
-      <img src="/images/homepage-illustration.png"/>
-    </div>
-  </div>
-  <section>
-    {% if page.markdown == 1 %}
-      {{ content | markdownify }}
-    {% else %}
-      {{ content }}
-    {% endif %}
-  </section>
+<body class="bg-slate-950 dark:bg-slate-950 min-h-screen flex flex-col">
+  {% include _header.html %}
+
+  <main class="flex-1 pt-16">
+    <!-- Hero -->
+    <section class="bg-gradient-to-b from-slate-950 to-slate-900 py-20 sm:py-28">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4">Savant Build System</h1>
+        <p class="text-lg sm:text-xl text-slate-400 mb-10">A modern, dependency-aware build system for Java</p>
+
+        <!-- Install command -->
+        <div class="max-w-xl mx-auto mb-6">
+          <div class="bg-slate-800 border border-slate-700 rounded-lg p-4 font-mono text-sm flex items-center justify-between gap-4">
+            <code class="text-sky-400 overflow-x-auto whitespace-nowrap">
+              <span class="text-slate-500">$</span> curl -sL savantbuild.org/install | bash
+            </code>
+            <button onclick="navigator.clipboard.writeText('curl -sL savantbuild.org/install | bash').then(function(){var b=document.getElementById('copy-feedback');b.textContent='Copied!';setTimeout(function(){b.textContent=''},2000)})" class="text-slate-500 hover:text-slate-300 flex-shrink-0 flex items-center gap-1 text-xs">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+              <span id="copy-feedback">Copy</span>
+            </button>
+          </div>
+        </div>
+
+        <a href="/docs/" class="text-sky-400 hover:text-sky-300 text-sm inline-flex items-center gap-1">
+          Read the Docs
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- Feature cards -->
+    <section class="py-16 sm:py-20">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <!-- Fast Builds -->
+          <div class="bg-slate-900 border border-slate-700 rounded-lg p-6 dark:bg-slate-900 dark:border-slate-700">
+            <div class="text-sky-400 mb-3">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            </div>
+            <h3 class="text-lg font-semibold text-white mb-2">Fast Builds</h3>
+            <p class="text-slate-400 text-sm">Groovy DSL build files that are simple and declarative. No plugin dependency management overhead.</p>
+          </div>
+          <!-- Dependency Management -->
+          <div class="bg-slate-900 border border-slate-700 rounded-lg p-6 dark:bg-slate-900 dark:border-slate-700">
+            <div class="text-sky-400 mb-3">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"/></svg>
+            </div>
+            <h3 class="text-lg font-semibold text-white mb-2">Dependency Management</h3>
+            <p class="text-slate-400 text-sm">Fully SemVer compliant. Handles the most complex dependency graphs with ease.</p>
+          </div>
+          <!-- Plugin System -->
+          <div class="bg-slate-900 border border-slate-700 rounded-lg p-6 dark:bg-slate-900 dark:border-slate-700">
+            <div class="text-sky-400 mb-3">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z"/></svg>
+            </div>
+            <h3 class="text-lg font-semibold text-white mb-2">Plugin System</h3>
+            <p class="text-slate-400 text-sm">Plugins provide reusable logic without injecting targets. You control the build flow.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Code example -->
+    <section class="py-16 sm:py-20 bg-slate-900/50 dark:bg-slate-900/50">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-2xl font-bold text-white text-center mb-10">Build files are simple</h2>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <!-- build.savant example -->
+          <div>
+            <div class="text-xs text-slate-500 font-mono mb-2 uppercase">build.savant</div>
+            <div class="highlight">
+<pre><code>project(group: "org.example",
+        name: "my-app",
+        version: "1.0.0",
+        licenses: ["ApacheV2_0"])
+
+java = loadPlugin(
+  id: "org.savantbuild.plugin:java:1.0.0")
+java.settings.javaVersion = "17"
+
+target(name: "compile",
+       description: "Compiles the project") {
+  java.compile()
+}
+
+target(name: "test",
+       description: "Runs the tests",
+       dependsOn: ["compile"]) {
+  java.test()
+}</code></pre>
+            </div>
+          </div>
+          <!-- CLI output -->
+          <div>
+            <div class="text-xs text-slate-500 font-mono mb-2 uppercase">Terminal</div>
+            <div class="highlight">
+<pre><code><span class="text-slate-500">$</span> <span class="text-sky-400">sb compile</span>
+<span class="text-emerald-400">Compiling [main] sources</span>
+<span class="text-emerald-400">Compiling [test] sources</span>
+
+<span class="text-slate-500">$</span> <span class="text-sky-400">sb test</span>
+<span class="text-emerald-400">Running tests</span>
+<span class="text-emerald-400">All 42 tests passed</span>
+
+<span class="text-slate-500">$</span> <span class="text-sky-400">sb jar</span>
+<span class="text-emerald-400">Building [build/jars/my-app-1.0.0.jar]</span></code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- What is Savant -->
+    <section class="py-16 sm:py-20">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 prose">
+        {{ content }}
+      </div>
+    </section>
+  </main>
+
+  {% include _footer.html %}
 </body>
 </html>
