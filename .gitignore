@@ -3,3 +3,5 @@ _site
 .jekyll-metadata
 .DS_Store
 .claude/brainstorm/
+node_modules/
+css/styles.css

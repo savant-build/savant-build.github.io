@@ -1,0 +1,13 @@
+{
+  "name": "savant-build-website",
+  "private": true,
+  "scripts": {
+    "build:css": "postcss css/main.css -o css/styles.css"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4",
+    "postcss": "^8.4",
+    "postcss-cli": "^11.0",
+    "autoprefixer": "^10.4"
+  }
+}
