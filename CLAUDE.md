@@ -10,7 +10,7 @@ All Claude Code artifacts live under `.claude/` to keep them out of the publishe
 
 - `.claude/plans/` — Implementation plans
 - `.claude/specs/` — Design specs
-- `.claude/brainstorm/` — Visual brainstorming session files (gitignored)
+- `.claude/brainstorm/` — Visual brainstorming session files and superpowers (gitignored)
 
 When creating new plans or specs, save them in the appropriate `.claude/` subdirectory, not under `docs/`.
 
