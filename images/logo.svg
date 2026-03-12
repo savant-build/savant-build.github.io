@@ -1,19 +1,18 @@
 <svg width="96" height="96" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="96" height="96" rx="20" fill="#0f172a"/>
   <!-- Edges -->
-  <line x1="48" y1="18" x2="20" y2="42" stroke="#38bdf8" stroke-width="2.5" opacity="0.4"/>
-  <line x1="48" y1="18" x2="76" y2="42" stroke="#38bdf8" stroke-width="2.5" opacity="0.4"/>
-  <line x1="20" y1="54" x2="48" y2="78" stroke="#38bdf8" stroke-width="2.5" opacity="0.4"/>
-  <line x1="76" y1="54" x2="48" y2="78" stroke="#38bdf8" stroke-width="2.5" opacity="0.4"/>
-  <line x1="20" y1="48" x2="76" y2="48" stroke="#38bdf8" stroke-width="2" opacity="0.2" stroke-dasharray="4 3"/>
+  <line x1="48" y1="18" x2="20" y2="42" stroke="#38bdf8" stroke-width="4" opacity="0.4"/>
+  <line x1="48" y1="18" x2="76" y2="42" stroke="#38bdf8" stroke-width="4" opacity="0.4"/>
+  <line x1="20" y1="54" x2="48" y2="78" stroke="#38bdf8" stroke-width="4" opacity="0.4"/>
+  <line x1="76" y1="54" x2="48" y2="78" stroke="#38bdf8" stroke-width="4" opacity="0.4"/>
+  <line x1="20" y1="48" x2="76" y2="48" stroke="#38bdf8" stroke-width="3" opacity="0.2" stroke-dasharray="4 3"/>
   <!-- Nodes -->
-  <circle cx="48" cy="14" r="11" fill="#38bdf8"/>
-  <circle cx="18" cy="48" r="11" fill="#38bdf8" opacity="0.8"/>
-  <circle cx="78" cy="48" r="11" fill="#38bdf8" opacity="0.8"/>
-  <circle cx="48" cy="82" r="11" fill="#34d399"/>
+  <circle cx="48" cy="14" r="14" fill="#38bdf8"/>
+  <circle cx="18" cy="48" r="14" fill="#38bdf8" opacity="0.8"/>
+  <circle cx="78" cy="48" r="14" fill="#38bdf8" opacity="0.8"/>
+  <circle cx="48" cy="82" r="14" fill="#34d399"/>
   <!-- Node inner dots -->
-  <circle cx="48" cy="14" r="3.5" fill="#0f172a"/>
-  <circle cx="18" cy="48" r="3.5" fill="#0f172a"/>
-  <circle cx="78" cy="48" r="3.5" fill="#0f172a"/>
-  <circle cx="48" cy="82" r="3.5" fill="#0f172a"/>
+  <circle cx="48" cy="14" r="5" fill="#0f172a"/>
+  <circle cx="18" cy="48" r="5" fill="#0f172a"/>
+  <circle cx="78" cy="48" r="5" fill="#0f172a"/>
+  <circle cx="48" cy="82" r="5" fill="#0f172a"/>
 </svg>

@@ -11,17 +11,18 @@
       <nav class="hidden md:flex items-center gap-6">
         <a href="/docs/" class="text-slate-300 hover:text-white text-sm no-underline transition-colors">Docs</a>
         <a href="/docs/getting-started/" class="text-slate-300 hover:text-white text-sm no-underline transition-colors">Getting Started</a>
-        <a href="/download" class="text-slate-300 hover:text-white text-sm no-underline transition-colors">Download</a>
         <a href="https://github.com/savant-build" class="text-slate-300 hover:text-white text-sm no-underline transition-colors inline-flex items-center gap-1" target="_blank" rel="noopener">
           GitHub
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
         </a>
-        <!-- Dark mode toggle -->
-        <button onclick="toggleDarkMode()" class="text-slate-400 hover:text-white p-1 transition-colors" aria-label="Toggle dark mode">
-          <!-- Sun icon (shown in dark mode) -->
-          <svg class="w-5 h-5 light-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
-          <!-- Moon icon (shown in light mode) -->
-          <svg class="w-5 h-5 dark-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+        <!-- Theme toggle (light → dark → system) -->
+        <button onclick="cycleTheme()" class="text-slate-400 hover:text-white p-1 transition-colors" aria-label="Cycle theme">
+          <!-- Sun icon (shown when light mode is active) -->
+          <svg class="w-5 h-5 theme-icon-light" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          <!-- Moon icon (shown when dark mode is active) -->
+          <svg class="w-5 h-5 theme-icon-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+          <!-- Monitor icon (shown when system mode is active) -->
+          <svg class="w-5 h-5 theme-icon-system" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
         </button>
       </nav>
 
@@ -36,10 +37,11 @@
   <div id="mobile-menu" class="hidden md:hidden bg-slate-900 border-t border-slate-700 px-4 pb-4">
     <a href="/docs/" class="block py-2 text-slate-300 hover:text-white text-sm no-underline">Docs</a>
     <a href="/docs/getting-started/" class="block py-2 text-slate-300 hover:text-white text-sm no-underline">Getting Started</a>
-    <a href="/download" class="block py-2 text-slate-300 hover:text-white text-sm no-underline">Download</a>
     <a href="https://github.com/savant-build" class="block py-2 text-slate-300 hover:text-white text-sm no-underline" target="_blank" rel="noopener">GitHub</a>
-    <button onclick="toggleDarkMode()" class="mt-2 text-slate-400 hover:text-white text-sm flex items-center gap-2">
-      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+    <button onclick="cycleTheme()" class="mt-2 text-slate-400 hover:text-white text-sm flex items-center gap-2">
+      <svg class="w-4 h-4 theme-icon-light" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+      <svg class="w-4 h-4 theme-icon-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+      <svg class="w-4 h-4 theme-icon-system" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
       Toggle theme
     </button>
   </div>
@@ -50,11 +52,7 @@
       menu.classList.toggle('hidden');
     });
     // Set initial icon visibility
-    (function() {
-      var isDark = document.documentElement.classList.contains('dark');
-      document.querySelectorAll('.dark-icon').forEach(function(el) { el.style.display = isDark ? 'none' : 'block'; });
-      document.querySelectorAll('.light-icon').forEach(function(el) { el.style.display = isDark ? 'block' : 'none'; });
-    })();
+    updateThemeIcons();
   </script>
   <style>
     html:not(.dark) header { background-color: #ffffff; border-color: #e2e8f0; }
