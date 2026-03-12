@@ -20,5 +20,3 @@ output.info("some info %s", "message");
 ~~~~
 
 There is also a specialized debug() method that takes a Throwable.
-
-[Next, we'll talk quickly about failing a build](failing-the-build)

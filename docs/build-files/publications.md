@@ -11,7 +11,7 @@ Any project can have zero or more publications. This means that a single project
 Publications are split into two groups **main** and **test**. Main publications are generally used at runtime and test publications are generally used at test time. Each publication is specified by a **name**, **type** and **file**. Publications can also optionally have a source file specified (i.e. a source JAR). Here's how you define publications:
 
 ~~~~ groovy
-project(group: "org.example", name: "my-project", version: "1.0", licenses: ["ApacheV2_0"]) {
+project(group: "org.example", name: "my-project", version: "1.0", licenses: ["Apache-2.0"]) {
   workflow {
     standard()
   }
@@ -32,7 +32,7 @@ project(group: "org.example", name: "my-project", version: "1.0", licenses: ["Ap
 To reduce the amount of repeated code, Savant provides a shortcut for Java projects that adds a test and main publication for the projects JAR files. Here is the shorthand for that:
 
 ~~~~ groovy
-project(group: "org.example", name: "my-project", version: "1.0", licenses: ["ApacheV2_0"]) {
+project(group: "org.example", name: "my-project", version: "1.0", licenses: ["Apache-2.0"]) {
   workflow {
     standard()
   }
@@ -46,7 +46,7 @@ project(group: "org.example", name: "my-project", version: "1.0", licenses: ["Ap
 You can still add additional publications to the **standard** definition above like this:
 
 ~~~~ groovy
-project(group: "org.example", name: "my-project", version: "1.0", licenses: ["ApacheV2_0"]) {
+project(group: "org.example", name: "my-project", version: "1.0", licenses: ["Apache-2.0"]) {
   workflow {
     standard()
   }
@@ -63,14 +63,14 @@ project(group: "org.example", name: "my-project", version: "1.0", licenses: ["Ap
 }
 ~~~~
 
-## Publish Workflow
+## Publish workflow
 
 When projects are released, the **publishWorkflow** is used to transfer the project's publications to a location that other project's can find them. This is different than an **integration** build for a project. Integration builds use the main **workflow** of the project and not the **publishWorkflow**.
   
 Here's how you define a **publishWorkflow**:
 
 ~~~~ groovy
-project(group: "org.example", name: "my-project", version: "1.0", licenses: ["ApacheV2_0"]) {
+project(group: "org.example", name: "my-project", version: "1.0", licenses: ["Apache-2.0"]) {
   workflow {
     standard()
   }
@@ -93,5 +93,3 @@ You can also use any of the following publish workflow types:
   * repository - (Required) The Subversion repository URL to fetch from (i.e. http://foo.example.com/svn)
   * username - (Optional) The username to use when connecting to the Subversion repository.
   * password - (Optional) The password to use when connecting to the Subversion repository.
-
-[Next, we'll add some targets to our build file](targets)

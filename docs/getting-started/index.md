@@ -6,9 +6,9 @@ description: Getting Started with Savant is simple. Just download, install and g
 
 Getting started with Savant is simple. You can run the simple install command for *nix systems or WSL2 systems:
 
-```bash
-
-```
+~~~~ bash
+curl -sL savantbuild.org/install | bash
+~~~~
 
 Follow these steps to get going:
 
@@ -18,7 +18,7 @@ Follow these steps to get going:
 
 ## Step 2
 
-Unpack the TAR GZ or ZIP file to a good location:
+Unpack the TAR GZ or ZIP file to a good location (you might need to change the version numbers below):
 
 ~~~~ bash
 $ mkdir -p ~/dev/savant
@@ -31,7 +31,7 @@ $ tar -xzvf savant-2.1.0.tar.gz
 Add the **bin** directory to your PATH:
 
 ~~~~ bash
-$ export PATH=$PATH:~/dev/savant/savant-1.0.0/bin
+$ export PATH=$PATH:~/dev/savant/savant-2.1.0/bin
 ~~~~
 
 ## Step 4

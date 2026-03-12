@@ -7,7 +7,7 @@ description: Savant plugins are simple to write and test.
 Plugins are the best part about Savant. They are simple and quick to write, simple to test, and easy to start using in your project via integration builds. Let's write a simple plugin that makes a file and puts some text in it.
 
 
-## Project Layout
+## Project layout
 
 First, we need to create the project layout. You don't need to conform to this layout, but this layout works well with the current Savant plugins.
 
@@ -21,18 +21,17 @@ project
    |
 ~~~~ 
 
-## Groovy Version
+## Groovy version
 
-One thing to note is that Savant currently uses Groovy version **2.2.1**. This means that if you are building a plugin you MUST use this version of Groovy. The configuration in the Groovy plugin configuration file *~/.savant/plugins/org.savanbuild.plugin.groovy.properties* must be set like this:
+One thing to note is that Savant currently uses Groovy version `4.0.22`. This means that if you are building a plugin you **MUST** use this version of Groovy. The configuration in the Groovy plugin configuration file `~/.config/savant/plugins/org.savantbuild.plugin.groovy.properties` must be set like this:
 
 ~~~~ properties
-2.2=some-path-to-groovy-2.2.1
+4.0=some-path-to-groovy-4.0.22
 ~~~~ 
 
+## Plugin build file
 
-## Plugin Build File
-
-Next, we need to add a Savant build file to our plugin. This build file goes in the root directory and is named **build.savant**. Here are the contents of a typical Groovy plugin's build script:
+Next, we need to add a Savant build file to our plugin. This build file goes in the root directory and is named `build.savant`. Here are the contents of a typical Groovy plugin's build script:
 
 ~~~~ groovy
 project(group: "com.mycompany", name: "myplugin", version: "0.1.0", license: "Commercial") {
@@ -42,9 +41,9 @@ project(group: "com.mycompany", name: "myplugin", version: "0.1.0", license: "Co
 
   dependencies {
     group(name: "provided") {
-      dependency(id: "org.savantbuild:savant-core:1.0.0")
-      dependency(id: "org.savantbuild:savant-dependency-management:1.0.0")
-      dependency(id: "org.savantbuild:savant-utils:1.0.0")
+      dependency(id: "org.savantbuild:savant-core:2.2.0")
+      dependency(id: "org.savantbuild:savant-dependency-management:2.2.0")
+      dependency(id: "org.savantbuild:savant-utils:2.2.0")
     }
     group(name: "test-compile", export: false) {
       dependency(id: "org.testng:testng:6.8.7")
@@ -57,17 +56,17 @@ project(group: "com.mycompany", name: "myplugin", version: "0.1.0", license: "Co
 }
 
 // Plugins
-dependency = loadPlugin(id: "org.savantbuild.plugin:dependency:1.0.0")
-groovy = loadPlugin(id: "org.savantbuild.plugin:groovy:1.0.0")
-groovyTestNG = loadPlugin(id: "org.savantbuild.plugin:groovy-testng:1.0.0")
-release = loadPlugin(id: "org.savantbuild.plugin:release-git:1.0.0")
+dependency = loadPlugin(id: "org.savantbuild.plugin:dependency:2.0.0")
+groovy = loadPlugin(id: "org.savantbuild.plugin:groovy:2.0.0")
+groovyTestNG = loadPlugin(id: "org.savantbuild.plugin:groovy-testng:2.0.0")
+release = loadPlugin(id: "org.savantbuild.plugin:release-git:2.0.0")
 
 // Plugin settings
 groovy.settings.groovyVersion = "4.0"
 groovy.settings.javaVersion = "17"
 groovy.settings.jarManifest = [
     "Savant-Plugin-Class": "com.mycompany.MyPlugin"
-  ]
+]
 groovyTestNG.settings.groovyVersion = "4.0"
 groovyTestNG.settings.javaVersion = "17"
 
@@ -96,9 +95,9 @@ target(name: "release", description: "Releases a full version of the project", d
 }
 ~~~~ 
 
-## The Plugin Class
+## The plugin class
 
-All plugins are simple Groovy classes (or they could be written in Java and it might be possible to write them in other JVM languages - honestly I haven't tried yet). Plugins must implement the marker interface **org.savantbuild.plugin.Plugin**. Start by creating a simple Groovy class such as **src/main/groovy/com/mycompany/MyPlugin.groovy**. Add this code to the plugin class to start:
+All plugins are simple Groovy classes (or they could be written in Java, and it might be possible to write them in other JVM languages - honestly, I haven't tried yet). Plugins must implement the marker interface `org.savantbuild.plugin.Plugin`. Start by creating a simple Groovy class such as `src/main/groovy/com/mycompany/MyPlugin.groovy`. Add this code to the plugin class to start:
 
 ~~~~ groovy
 package com.mycompany
@@ -109,9 +108,9 @@ class MyPlugin implements Plugin {
 }
 ~~~~ 
 
-If you want to get some extra helper methods for your plugin, you can extend **org.savantbuild.plugin.groovy.BaseGroovyPlugin**, but this isn't required.
+If you want to get some extra helper methods for your plugin, you can extend `org.savantbuild.plugin.groovy.BaseGroovyPlugin`, but this isn't required.
 
-Your plugin class must have a constructor that takes the **Project** and **Output** objects like this:
+Your plugin class must have a constructor that takes the `Project` and `Output` objects like this:
 
 ~~~~ groovy
 package com.mycompany
@@ -125,9 +124,9 @@ class MyPlugin extends BaseGroovyPlugin {
 }
 ~~~~ 
 
-## Plugin Configuration
+## Plugin configuration
 
-The simplest way to configure your plugin is by creating another Groovy class in your project and setting a field in the plugin class to a new instance. Let's make a configuration class that manages the file our plugin is going to write to and add it to our plugin. Create the file **src/main/groovy/com/mycomapny/MyPluginSettings.groovy** and add this code to it:
+The simplest way to configure your plugin is by creating another Groovy class in your project and setting a field in the plugin class to a new instance. Let's make a configuration class that manages the file our plugin is going to write to and add it to our plugin. Create the file `src/main/groovy/com/mycomapny/MyPluginSettings.groovy` and add this code to it:
 
 ~~~~ groovy
 package com.mycompany
@@ -155,7 +154,7 @@ class MyPlugin extends BaseGroovyPlugin {
 }
 ~~~~ 
 
-## Plugin Methods
+## Plugin methods
 
 Lastly, you can define any number of public methods on your plugin. Each plugin method should be a separate feature of the plugin. Let's add our plugin method for creating the file and outputting some text into it:
 
@@ -178,9 +177,9 @@ class MyPlugin extends BaseGroovyPlugin {
 }
 ~~~~ 
 
-## Plugin Test
+## Plugin test
 
-Now we need to test our plugin. Create the Groovy class **src/test/groovy/com/mycompany/MyPluginTest.groovy**. Add this code to this class:
+Now we need to test our plugin. Create the Groovy class `src/test/groovy/com/mycompany/MyPluginTest.groovy`. Add this code to this class:
 
 ~~~~ groovy
 package com.mycompany
@@ -195,7 +194,7 @@ import java.nio.file.Paths
 
 import static org.testng.Assert.*
 
-class JavaPluginTest {
+class MyPluginTest {
   @Test
   def test() {
     Project project = new Project(Paths.get("build/test"), output)
@@ -217,15 +216,15 @@ $ sb test
 
 ## Manifest entry
 
-You might have noticed that in our **build.savant** file we added these lines of configuration:
+You might have noticed that in our `build.savant` file we added these lines of configuration:
 
 ~~~~ groovy
 groovy.settings.jarManifest = [
     "Savant-Plugin-Class": "com.mycompany.MyPlugin"
-  ]
+]
 ~~~~ 
 
-Savant uses the entry named **Savant-Plugin-Class** in the MANIFEST.MF file to load the plugin. You'll need to set this to point to your plugin class.
+Savant uses the entry named `Savant-Plugin-Class` in the MANIFEST.MF file to load the plugin. You'll need to set this to point to your plugin class.
 
 ## Integrating
 

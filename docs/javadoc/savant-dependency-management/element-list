@@ -1,0 +1,6 @@
+org.savantbuild.dep
+org.savantbuild.dep.domain
+org.savantbuild.dep.graph
+org.savantbuild.dep.maven
+org.savantbuild.dep.workflow
+org.savantbuild.dep.workflow.process

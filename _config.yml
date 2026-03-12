@@ -1,12 +1,11 @@
 title: Savant Build
-email: brian@inversoft.com
+email: brian@pontarelli.com
 description: >
   Savant Build tool is a simple and elegant way to take back control of
   your software. With a SemVer compliant dependency management system,
   Savant just works.
 baseurl: ""
 url: "https://savantbuild.org"
-twitter_username: inversoft
 github_username: savant-build
 
 # Build settings

@@ -7,7 +7,7 @@ description: Savant uses build targets defined in the build file to execute your
 Our Savant build file doesn't do anything yet, so let's add some targets.
 
 ~~~~ groovy
-project(group: "org.example", name: "my-project", version: "1.0", licenses: ["ApacheV2_0"]) {
+project(group: "org.example", name: "my-project", version: "1.0", licenses: ["Apache-2.0"]) {
   ...
 }
 
@@ -26,7 +26,7 @@ target(name: "test", description: "Executes the projects tests", dependsOn: ["co
 
 This is a fairly common build file that includes targets to clean the project, compile the project and run the tests. Notice that the **test** target depends on the **compile** target.
 
-## Target Dependencies
+## Target dependencies
 
 Target dependencies are an ordered list. This means that Savant will ensure that dependent targets are executed in the order they are defined in the build file. For example:
 
@@ -57,5 +57,3 @@ One
 Two
 Three
 ~~~~ 
-
-[Next, we'll cover generating output from the build file](output)

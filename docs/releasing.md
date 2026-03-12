@@ -20,7 +20,7 @@ The steps required to release a Java/Git project are:
 
 Luckily, the [Release Git Plugin](/plugins/release-git/) does most of the work. All you need to do is add a few things to your build file and you will be able to release projects quickly and easily.
 
-## Publish Workflow
+## Publish workflow
 
 First, add the publish workflow. This is the process that Savant uses to publish the project's artifacts. Here's a sample publish workflow:
 
@@ -34,7 +34,7 @@ project(...) {
 
 This workflow instructs Savant to publish the project's artifacts to the Subversion repository located at **http://svn.mycompany.com/savant-repository**.
 
-## Release Git Plugin
+## Release Git plugin
 
 Next, include the [Release Git Plugin](/plugins/release-git/) in the build file:
 

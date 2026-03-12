@@ -9,5 +9,3 @@ If you need to fail a build for any reason, you simply call the fail method from
 ~~~~ groovy
 fail("Something wicked this way comes")
 ~~~~
-
-[Next, we'll use some plugins in our build file](plugins)

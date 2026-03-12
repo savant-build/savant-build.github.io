@@ -6,12 +6,12 @@ description: Learn the basics of writing Savant build files including project in
 
 In this quick start guide to Savant build files we’ll cover how to define build dependencies and build targets.
 
-## 1. First, let’s set up a simple build file for a new project called _HelloWorld_.
+## 1. Project definition
 
-Here is how we define this project and its version:
+First, let’s set up a simple build file for a new project called _HelloWorld_. Here is how we define this project and its version:
 
 ~~~~ groovy
-project(group: "org.inversoft.savant.example", name: "HelloWorld", version: "1.0", licenses: ["ApacheV2_0"]) {
+project(group: "org.inversoft.savant.example", name: "HelloWorld", version: "1.0", licenses: ["Apache-2.0"]) {
   // Project info goes here
 }
 ~~~~ 
@@ -21,12 +21,12 @@ A project definition needs a group, name, version and a license. You can ignore 
 The group name is usually a reverse DNS name (notice that the org is first not last) that identifies the owners of the project. The name is the project’s formal name and the version is the project’s [Semantic Version](http://semver.org/).
 
 
-## 2. Next we can define the other libraries and frameworks that our project depends on.
+## 2. Dependencies
 
-We place the dependencies inside the project definition and break them into groups. It looks like this:
+Next we can define the other libraries and frameworks that our project depends on. We place the dependencies inside the project definition and break them into groups. It looks like this:
 
 ~~~~ groovy
-project(group: "org.inversoft.savant.example", name: "HelloWorld", version: "1.0", licenses: ["ApacheV2_0"]) {
+project(group: "org.inversoft.savant.example", name: "HelloWorld", version: "1.0", licenses: ["Apache-2.0"]) {
   dependencies {
     group(name: "compile") {
       dependency(id: "org.apache.commons:commons-collections:3.1")
@@ -38,14 +38,13 @@ project(group: "org.inversoft.savant.example", name: "HelloWorld", version: "1.0
 }
 ~~~~ 
 
-These dependency directives tell Savant that in order to compile our source code Savant needs to include Commons Collections version 3.1. Likewise, in order to compile our test source code, Savant will need to include TestNG version 6.8.7.
+These dependency directives tell Savant that in order to compile our source code Savant needs to include Commons Collections version 3.1. Likewise, to compile our test source code, Savant will need to include TestNG version 6.8.7.
 
 Savant always uses a shorthand notation for dependencies. This notation is in this form:
 
 ~~~~ groovy
 <group>:<name>:<version>
 ~~~~ 
-
 
 Savant’s dependency group definition is completely free-form. We could have named the groups above "compile-time" and "test-compile-time".
 However, there are a few standard names that are used by Savant plugins. These are:
@@ -60,39 +59,38 @@ However, there are a few standard names that are used by Savant plugins. These a
 | test-runtime | Used to run the tests |
 
 
-## 3. Next, let’s add some build targets to our project.
+## 3. Build targets
 
-The first target we need to add is a compile target that will compile all of our source code. Compiling everything is not a trivial task. Because Savant uses a Groovy DSL, you could simply write all of the Groovy code needed to compile your code. Writing this much code would be tedious. For common tasks such as compiling, Savant uses plugins to provide reusable features. In this case, we will use the Java plugin since our project is a Java project.
+Next, let’s add some build targets to our project. The first target we need to add is a compile target that will compile all of our source code. Compiling everything is not a trivial task. Because Savant uses a Groovy DSL, you could simply write all of the Groovy code needed to compile your code. Writing this much code would be tedious. For common tasks such as compiling, Savant uses plugins to provide reusable features. In this case, we will use the Java plugin since our project is a Java project.
 
 Plugins are dependencies just like the project dependencies we added above. However, they are note included in a dependency group, instead, we simply define the plugin dependency using the _loadPlugin_ directive. Here is how we include tje Java plugin in our build file:
 
 ~~~~ groovy
-java = loadPlugin(id: "org.savantbuild.plugin:java:0.2.0")
+java = loadPlugin(id: "org.savantbuild.plugin:java:2.0.1")
 ~~~~ 
 
 _Notice that this looks very similar to a normal dependency declaration, we have only changed *dependency* to *loadPlugin*._
-This directive loads the Java plugin version 0.2.0 and the plugin reference is assigned to a variable named ‘java’. Now that we have loaded the plugin, we need to configure it. The Java plugin requires us to define the JDK we are using to compile. We’ll start by setting the java version using the settings of the plugin like this:
+This directive loads the Java plugin version 2.0.1 and the plugin reference is assigned to a variable named ‘java’. Now that we have loaded the plugin, we need to configure it. The Java plugin requires us to define the JDK we are using to compile. We’ll start by setting the java version using the settings of the plugin like this:
 
 ~~~~ groovy
 java.settings.javaVersion = "17"
 ~~~~ 
 
-## 4. Next, we need to create a configuration file for the Java plugin.
+## 4. Configuration files
 
-Now that we have told the plugin we want to use Java version 1.8, we'll need to tell Savant the location of JDK 1.8 on our computer.
-Forcing this configuration file to be in the users home directory allows you to have Java in different locations on different computers.
+Next, we need to create a configuration file for the Java plugin. Now that we have told the plugin we want to use Java version 17, we'll need to tell Savant the location of JDK 17 on our computer. Forcing this configuration file to be in the users home directory allows you to have Java in different locations on different computers.
 
-We need to create the file `~/.savant/plugins/org.savantbuild.plugin.java.properties` and add this configuration:
+We need to create the file `~/.config/savant/plugins/org.savantbuild.plugin.java.properties` and add this configuration:
 
 ~~~~ groovy
-1.8=/Library/Java/JavaVirtualMachines/jdk1.8.0.jdk/Contents/Home
+17=~/some-path-to-java/jdk-17
 ~~~~ 
 
-This tells Savant where JDK 1.8 lives on my computer. The path to the JDK may be different on your computer.
+This tells Savant where JDK 17 lives on my computer. The path to the JDK may be different on your computer.
 
-## 5. Now that the Java plugin is configured to use JDK 1.8.
+## 5. Targets
 
-We can use it in our build target like this:
+Now that the Java plugin is configured to use JDK 17, we can use it in our build target like this:
 
 ~~~~ groovy
 target(name: "compile", description: "Compiles everything") {
@@ -102,9 +100,9 @@ target(name: "compile", description: "Compiles everything") {
 
 This will tell Savant that we have a build target named _compile_ and that it will execute the Java plugin’s compile() method. This method on the Java plugin executes the javac command using the path we configured above. It will include the dependencies we configured in our build file on the classpath when executing the javac command.
 
-## 6. Finally, we can execute our build from the command line.
+## 6. Build the project
 
-Execute the build like this:
+Finally, we can execute our build from the command line. Execute the build like this:
 
 ~~~~ shell
 $ sb compile

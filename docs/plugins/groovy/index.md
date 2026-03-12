@@ -8,15 +8,15 @@ plugin_name: Groovy
 
 The Groovy plugin allows you to build Groovy projects. This plugin includes methods for compiling, jarring, and cleaning a Groovy project. The features of the plugin are also the public methods of the plugin class so you can refer to the [Groovy Doc](docs/) for more information.
 
-**LATEST VERSION: 1.0.0**
+**LATEST VERSION: 2.0.0**
 
 
-## Loading the Plugin
+## Loading the plugin
 
 Here is how you load this plugin:
 
 ~~~~ groovy
-groovy = loadPlugin(id: "org.savantbuild.plugin:groovy:1.0.0")
+groovy = loadPlugin(id: "org.savantbuild.plugin:groovy:2.0.0")
 ~~~~ 
 
 ## Layout
@@ -69,10 +69,10 @@ groovy.settings.javaVersion = "1.7"
 
 These two properties specify the versions to use, but you must also configure the location of these GDK and JDK on your computer. These locations are configure in two configuration files in your home directory. These files are:
 
-* ~/.savant/plugins/org.savantbuild.plugin.java.properties
-* ~/.savant/plugins/org.savantbuild.plugin.groovy.properties
+* ~/.config/savant/plugins/org.savantbuild.plugin.java.properties
+* ~/.config/savant/plugins/org.savantbuild.plugin.groovy.properties
 
-The first file is used to define the location of the JDKs on your computer. Here's an example of the **~/.savant/plugins/org.savantbuild.plugin.java.properties** file for a Mac:
+The first file is used to define the location of the JDKs on your computer. Here's an example of the **~/.config/savant/plugins/org.savantbuild.plugin.java.properties** file for a Mac:
 
 ~~~~ 
 1.6=/Library/Java/JavaVirtualMachines/1.6.0_65-b14-462.jdk/Contents/Home
@@ -80,7 +80,7 @@ The first file is used to define the location of the JDKs on your computer. Here
 1.8=/Library/Java/JavaVirtualMachines/jdk1.8.0.jdk/Contents/Home
 ~~~~ 
 
-Here's an example of the **~/.savant/plugins/org.savantbuild.plugin.groovy.properties** file for a Mac:
+Here's an example of the **~/.config/savant/plugins/org.savantbuild.plugin.groovy.properties** file for a Mac:
 
 ~~~~ 
 2.1=/Library/Groovy/Versions/2.1/Home
@@ -89,7 +89,7 @@ Here's an example of the **~/.savant/plugins/org.savantbuild.plugin.groovy.prope
 
 This class has additional fields that allow you to configure the command-line arguments passed to the groovyc compiler, whether or not to use invokedynamic support, and the dependencies to include during compilation. Here are the additional parameters:
 
-### Compiler Arguments
+### Compiler arguments
 
 You can specify additional parameters to the Groovy compiler using the **compilerArguments** field on the settings class. Here is an example:
 
@@ -99,7 +99,7 @@ groovy.settings.compilerArguments = "-j"
 
 This will enable joint compilation in the Groovy compiler.
 
-### Doc Arguments
+### Doc arguments
 
 You can specify additional parameters to the Groovy doc generator using the **docArguments** field on the settings class. Here is an example:
 
@@ -107,7 +107,15 @@ You can specify additional parameters to the Groovy doc generator using the **do
 groovy.settings.docArguments = "-footer '<span>Copyright 2014 My Company</span>'"
 ~~~~ 
 
-### Invoke Dynamic
+### JVM arguments
+
+You can specify additional JVM arguments passed to the Groovy compiler using the **jvmArguments** field on the settings class. Here is an example:
+
+~~~~ groovy
+groovy.settings.jvmArguments = "-Xmx512m"
+~~~~
+
+### Invoke dynamic
 
 The **indy** flag toggles whether or not your Groovy classes are compiled with invoke dynamic support or not. This is set to **false** by default. This flag can be set like this:
 
@@ -115,7 +123,7 @@ The **indy** flag toggles whether or not your Groovy classes are compiled with i
 groovy.settings.indy = true
 ~~~~ 
 
-### Compile Dependencies
+### Compile dependencies
 
 You can change the dependencies that are included in the classpath during compilation. This is an advanced setting and should be only used in very special cases. This setting controlled by the **mainDependencies** and **testDependencies** fields. This fields are a List of Maps. Each Map defines a dependency group to include and also whether or not transitive dependencies are included and what transitive dependency groups are also included. Here is an example:
 
@@ -141,7 +149,7 @@ This defines that the project's **compile** and **provided** dependency groups s
 | fetchSource | Determines if the source for the dependencies or downloaded or not | boolean | true |
 | transitiveGroups | The transitive dependency groups to fetch. This is only used if transitive is set to true | List\<String> | false |
 
-### JAR Manifest
+### JAR manifest
 
 You can control the manifest attributes for the JAR file that the Groovy plugin builds for your project. This plugin ensures that these manifest attributes are always set:
 
@@ -195,6 +203,6 @@ groovy.clean()
 ~~~~ 
 
 
-## Advanced Usage
+## Advanced usage
 
 The Groovy plugin also defines a few more advanced methods for compiling Groovy files in any directory to any directory or copying resources from any directory, to any directory. Refer to the JavaDoc of the plugin for more information.

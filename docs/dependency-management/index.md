@@ -18,11 +18,11 @@ At its core, Savant is a dependency management tool. The build system is built o
 At different stages of your project's build and run process, it might need different dependencies. For example, at compile time it might need Apache Commons Collections version 3.1. On the other hand, at test time it might require TestNG version 4.8.7. Therefore, dependencies are broken up into groups, one for each stage of the project build and run process.
 
 
-## Semantic Versioning
+## Semantic versioning
 
 Savant's dependency management system implements [Semantic Versioning](http://semver.org). Semantic Versioning is a specification that determines how projects must maintain binary compatibility. If you haven't read the Semantic Versioning specification, it is probably a good idea to start there.
 
-Savant does deviate from the Semantic Versioning specification in one major way. Savant uses a version marker for integration builds. The marker is **-{integration}**. This marker is automatically handled by Savant. Although, if you have a dependency on a project that is an integration build, you'll need to add the marker to the dependency declaration.
+Savant does deviate from the Semantic Versioning specification in one major way. Savant uses a version marker for integration builds. The marker is `-{integration}`. This marker is automatically handled by Savant. Although, if you have a dependency on a project that is an integration build, you'll need to add the marker to the dependency declaration.
 
 
 ## Licenses

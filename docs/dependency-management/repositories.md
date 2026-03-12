@@ -14,29 +14,70 @@ In most commercial environments, project's will use 2 different repositories:
 Company artifacts are usually IP and therefore most companies put these artifacts into a secure HTTP server that only their employees have access to.
 
 
-## Inversoft's Public Repository
+## Savant's public repository
 
-Inversoft provides a free Savant repository for you to use. This repository is not like Maven Central in that it only contains the open source libraries and frameworks that Inversoft has added. If you want to help grow this repository, contact Brian Pontarelli at (brian@inversoft.com).
+Savant provides a free Savant repository for you to use. This repository is not like Maven Central in that it only contains the open source libraries and frameworks that Savant has added. The URL for this repository is: https://repository.savantbuild.org
 
-The URL for the Inversoft repository is: https://repository.savantbuild.org
-
-This repository is also the default repository that Savant will use when you specify the **standard()** set in your workflow like this:
+This repository is also the default repository that Savant will use when you specify the `standard()` set in your workflow like this:
 
 ~~~~ groovy
 workflow {
   standard()
 }
-~~~~ 
+~~~~
 
-## Adding Artifacts to a Repository
+**NOTE**: The Savant teams is working on a webapp and a new repository system that will allow any project to register their own domain and publish artifacts to the repository. This is in the early stages of development.
 
-Whether you are a contributor to the Inversoft repository or setup your own repository using the instructions below, you will likely need to add a lot of artifacts to it. Savant provides a command-line tool that allows you to pull artifacts from a Maven repository and add them to a Savant repository. This tool is call Savant-Maven-Bridge and you can download it here:
+## Maven Central
 
-http://savant.inversoft.org/org/savantbuild/savant-maven-bridge/0.2.0/savant-maven-bridge-0.2.0.tar.gz
+Savant can fetch artifacts directly from Maven Central (or any Maven-style repository). This is useful when a dependency is available on Maven Central but has not yet been added to the Savant public repository.
 
-This tool is interactive and will ask you a bunch of questions about each artifact you are importing into your Savant repository. This questions attempt to fill in the gaps between Maven and Savant. Here is a list of some of the major differences between Maven and Savant that this tool fixes:
+To fetch from Maven Central, use the `maven` workflow process:
 
-## Referencing a Private Repository
+~~~~ groovy
+workflow {
+  fetch {
+    cache()
+    url(url: "https://repository.savantbuild.org")
+    maven(url: "https://repo1.maven.org/maven2")
+  }
+  publish {
+    cache()
+  }
+}
+~~~~
+
+This configuration tells Savant to first check the local cache, then the Savant public repository, and finally Maven Central. The `standard()` workflow shorthand includes all three of these by default:
+
+~~~~ groovy
+workflow {
+  standard()
+}
+~~~~
+
+When Savant fetches an artifact from Maven Central, it reads the Maven POM file to determine the artifact's dependencies and translates them into Savant's dependency model. There are a few important differences to be aware of:
+
+* **Semantic Versioning** — Maven does not enforce SemVer, but Savant does. If a Maven artifact has a non-SemVer version, Savant will reject it until a version mapping has been added to your build file.
+* **License information** — Maven POMs often lack or have non-standard license declarations. Savant requires license information for all artifacts. When importing from Maven Central, Savant will attempt to read the license from the POM, but you may need to provide it manually.
+* **Dependency scopes** — Savant maps Maven scopes (`compile`, `runtime`, `test`, `provided`) to Savant dependency groups. Maven's `optional` flag maps to the `compile-optional` group.
+
+You can also use Maven repositories other than Maven Central. For example, to fetch from a custom Maven repository:
+
+~~~~ groovy
+workflow {
+  fetch {
+    cache()
+    url(url: "https://repository.savantbuild.org")
+    maven(url: "https://repo1.maven.org/maven2")
+    maven(url: "https://maven.example.com/releases", username: "user", password: "pass")
+  }
+  publish {
+    cache()
+  }
+}
+~~~~
+
+## Referencing a private repository
 
 A private repository will house anything an organization uses but doesn't wish to publish publicly.
 
@@ -47,7 +88,8 @@ workflow {
       url(url: "http://example.com/internal/", username: "repo-username", password: "repo-password")
   }
 }
-~~~~ 
+~~~~
+
 ### SemVer
 
 Maven is not SemVer compliant, Savant is. If a Maven artifact has an invalid version, you will need to fix it.
@@ -59,33 +101,23 @@ Maven is not SemVer compliant, Savant is. If a Maven artifact has an invalid ver
 
 Maven doesn't require license information and the license information is not 100% standardized. Savant uses a strict set of licenses for artifacts and all artifacts must have 1 or more licenses. Therefore, you will need to specify the license(s) for each artifact you are importing.
 
-Also, some licenses require the full license text because the default license text is merely a template for the project to start from. The licenses that require license text are:
+Savant uses [SPDX license identifiers](https://spdx.org/licenses/) for all licenses. Any valid SPDX license ID can be used (e.g., `Apache-2.0`, `MIT`, `GPL-3.0-only`). In addition, Savant supports custom license types: `Commercial`, `Other`, `OtherDistributableOpenSource`, and `OtherNonDistributableOpenSource`.
 
-* BSD
-* BSD_2_Clause
-* BSD_3_Clause
-* BSD_4_Clause
-* Commercial
-* MIT
-* Other
-* OtherDistributableOpenSource
-* OtherNonDistributableOpenSource
-
-In these cases, you must provide the license text to the command line tool.
+Custom license types require the full license text because they are not standardized. In these cases, you must provide the license text to the command line tool.
 
 ### Exclusions
 
-Maven allows an artifact to exclude transitive dependencies. Technically this is a broken dependency graph. It often indicates that the transitive dependency was defined in the wrong scope. In most cases, the transitive dependency should be marked as optional or provided, but instead was put in the compile or runtime scope. Likewise, Maven projects often put test dependencies in the **compile** scope, forcing developers to exclude those dependencies.
+Maven allows an artifact to exclude transitive dependencies. Technically, this is a broken dependency graph. It often indicates that the transitive dependency was defined in the wrong scope. In most cases, the transitive dependency should be marked as optional or provided, but instead was put in the compile or runtime scope. Likewise, Maven projects often put test dependencies in the `compile` scope, forcing developers to exclude those dependencies.
 
-Savant does not support exclusions. Therefore, you must selectively choose whether or not to include a transitive dependency in the dependency graph. You can also select to move a dependency into the correct scope.
+Savant supports Maven exclusions, but keep in mind that these are broken artifacts, and you might need to do some modifications to your classpath in order for your application to rum properly.
 
-### Optional Dependencies
+### Optional dependencies
 
-Maven allows a dependency in any scope to be marked as optional. This is somewhat unnecessary for the **test** and **provided** scope, but very useful for the **compile** scope. Savant doesn't provide this same ability. Instead, Savant uses a dependency group name **compile-optional**. These dependencies are included at compile-time, but not at runtime. This is almost the exactly same thing as the **provided** scope, but Savant breaks them into two separate groups.
+Maven allows a dependency in any scope to be marked as optional. This is somewhat unnecessary for the `test` and `provided` scope, but invaluable for the `compile` scope. Savant doesn't provide this same ability. Instead, Savant uses a dependency group name `compile-optional`. These dependencies are included at compile-time, but not at runtime. This is nearly the exact same thing as the `provided` scope, but Savant breaks them into two separate groups.
 
-## Repository Layout
+## Repository layout
 
-The standard repository layout uses the artifact group, project, name, version and type to store artifacts. Here is the layout for the Commons Collection artifact:
+The standard repository layout uses the artifact group, project, name, version, and type to store artifacts. Here is the layout for the Commons Collection artifact:
 
 ~~~~ 
 org/apache/commons/commons-collections/3.2.1/commons-collections-3.2.1.jar
@@ -96,18 +128,18 @@ org/apache/commons/commons-collections/3.2.1/commons-collections-3.2.1-src.jar
 org/apache/commons/commons-collections/3.2.1/commons-collections-3.2.1-src.jar.md5
 ~~~~ 
 
-Project's can publish multiple artifacts, which changes only the file name. The directory name remains the same.
+Project's can publish multiple artifacts, each with different names. The directory name remains the same.
 
 Savant uses MD5 files to ensure that the artifacts are valid when they are downloaded.
 
-## Manually Building AMD Files
+## Manually building AMD files
 
 Sometimes you have no option but to manually build the AMD file for an artifact. The AMD file is the **Artifact Meta Data** that tells Savant but an artifact's dependencies and licenses. If you need to manually edit or create an AMD file, here is an example AMD file (solr-core's AMD) for you to work from:
 
 ~~~~ xml
 <?xml version="1.0" encoding="UTF-8"?>
 <artifact-meta-data>
-  <license type="ApacheV2_0"/>
+  <license type="Apache-2.0"/>
   <dependencies>
     <dependency-group name="compile">
       <dependency group="org.slf4j" project="jcl-over-slf4j" name="jcl-over-slf4j" version="1.6.4" type="jar"/>
@@ -179,14 +211,14 @@ Additionally, some licenses require license text. For these licenses, you must p
 </artifact-meta-data>
 ~~~~ 
 
-## Build your Own Repository
+## Build your own repository
 
-You can build your own repository to use with Savant. The way that the Inversoft repository is setup is via Apache and Subversion. Using Subversion has a lot of advantages over SCP or Git. The main advantages are:
+You can build your own repository to use with Savant. The way that the Savant's public repository is set up is via Subversion and a web server. Using Subversion has a lot of advantages over SCP or Git. The main advantages are:
 
 * Artifacts are backed up and new repositories can be created quickly from the Subversion repository. If something happens to the server or the directory that stores your Savant repository, it can be recreated from the Subversion repository.
-* Subversion allows for single files to be added to a repository without the need to checkout the entire repository. When you release a project, this allows your project artifacts to be publish to the Subversion repository quickly.
+* Subversion allows for single files to be added to a repository without the need to checkout the entire repository. When you release a project, this allows your project artifacts to be published to the Subversion repository quickly.
 
-Here is how to setup a custom repository using these two systems.
+Here is how to set up a custom repository using these two systems.
 
 ### Install Apache
 
@@ -289,7 +321,7 @@ You will need to create the **htpasswd** file that contains the credentials for 
 $ htpasswd -b /var/svn/svn.mycompany.com/repository.auth <username> <password>
 ~~~~ 
 
-### Check-out the Subversion Repository
+### Check-out the Subversion repository
 
 Make sure that you create the Savant repository www document root directory we configured above like this:
 
@@ -307,7 +339,7 @@ $ chown -R www-data:www-data repository
 
 The most important parts here are that you are checking out the Subversion repository using a **file:///** URL. This will ensure that you don't have to battle with passwords and authentication since the repository is on the local server. Also, you MUST change the ownership of this directory to the user that is running Apache. On many Linux distros this user is named www-data.
 
-### Subversion Hook
+### Subversion hook
 
 Finally, you will need to add a Subversion hook to your Subversion repository. This will tell Subversion to update a working copy each time a commit is made. This is how the files in the Subversion repository end up in the Savant repository directory. Here is an example **post-commit** hook file that you need to put in the **/var/svn/svn.mycompany.com/repository/hooks/post-commit** file.
 

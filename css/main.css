@@ -40,7 +40,7 @@
 
   /* Prose content styling */
   .prose {
-    @apply max-w-prose;
+    max-width: none;
   }
 
   .prose p {

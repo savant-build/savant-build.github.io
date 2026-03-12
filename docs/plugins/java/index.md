@@ -6,23 +6,21 @@ plugin: true
 plugin_name: Java
 ---
 
-The Java plugin allows you to build Java projects. This plugin includes methods for compiling, jarring, and cleaning a Java project. The features of the plugin are also the public methods of the plugin class so you can refer to the [Groovy Doc](docs/) for more information.
+The Java plugin allows you to build Java projects. This plugin includes methods for compiling, JARring, and cleaning a Java project. The features of the plugin are also the public methods of the plugin class, so you can refer to the [Groovy Doc](docs/) for more information.
 
-**LATEST VERSION: 1.0.0**
+**LATEST VERSION: 2.0.1**
 
-
-## Loading the Plugin
+## Loading the plugin
 
 Here is how you load this plugin:
 
 ~~~~ groovy
-java = loadPlugin(id: "org.savantbuild.plugin:java:1.0.0")
+java = loadPlugin(id: "org.savantbuild.plugin:java:2.0.1")
 ~~~~ 
-
 
 ## Layout
 
-The default layout for a Java project's is:
+The default layout for a Java project is:
 
 ~~~~ 
 project
@@ -42,70 +40,77 @@ project
    |    |- jars           <- The JAR files that contain your compiled Java files are created here
 ~~~~ 
 
-You can change the layout via the **JavaLayout** class. The JavaPlugin class has a member field named **layout** that is the main instance of this class. Here's an example:
+You can change the layout via the `JavaLayout` class. The JavaPlugin class has a member field named `layout` that is the main instance of this class. Here's an example:
 
 ~~~~ 
 java.layout.mainSourceDirectory = Paths.get("source/main/java")
 java.layout.testSourceDirectory = Paths.get("source/test/java")
 ~~~~ 
 
-This changes the location of the source files from **src/main/java** and **src/test/java** to **source/main/java** and **source/test/java**. You can also change these locations as well using the same method in the example above:
+This changes the location of the source files from `src/main/java` and `src/test/java` to `source/main/java` and `source/test/java`. Also, you can change these locations using the same method in the example above:
 
-* docDirectory
-* jarOutputDirectory
-* mainResourceDirectory
-* mainBuildDirectory
-* testResourceDirectory
-* testBuildDirectory
-
+* `docDirectory`
+* `jarOutputDirectory`
+* `mainResourceDirectory`
+* `mainBuildDirectory`
+* `testResourceDirectory`
+* `testBuildDirectory`
 
 ## Settings
 
-The Java plugin has one required setting, which defines the Java version to compile with. The settings for the plugin are configured via the **JavaSettings** class. The **JavaPlugin** class has a field named **settings** that is the main instance of this class. Here is an example of configuring the plugin:
+The Java plugin has one required setting, which defines the Java version to compile with. The settings for the plugin are configured via the `JavaSettings` class, which is defined on the `JavaPlugin` class via a field named `settings`. Here is an example of configuring the plugin:
 
 ~~~~ groovy
-java.settings.javaVersion = "1.7"
+java.settings.javaVersion = "17"
 ~~~~ 
 
-This property specifies the version of Java to use, but you must also configure the location of the JDK on your computer. The location of the JDK is configured in the file **~/.savant/plugins/org.savantbuild.plugin.java.properties**. Here's an example of the **~/.savant/plugins/org.savantbuild.plugin.java.properties** file for a Mac:
+This property specifies the version of Java to use, but you must also configure the location of the JDK on your computer. The location of the JDK is configured in the file `~/.config/savant/plugins/org.savantbuild.plugin.java.properties`. Here's an example of the `~/.config/savant/plugins/org.savantbuild.plugin.java.properties` file:
 
 ~~~~ 
-1.6=/Library/Java/JavaVirtualMachines/1.6.0_65-b14-462.jdk/Contents/Home
-1.7=/Library/Java/JavaVirtualMachines/jdk1.7.0_10.jdk/Contents/Home
-1.8=/Library/Java/JavaVirtualMachines/jdk1.8.0.jdk/Contents/Home
+1.8=/Users/me/dev/java/current8
+17=/Users/me/dev/java/current17
+21=/Users/me/dev/java/current21
 ~~~~ 
 
-This class has additional fields that allow you to configure the command-line arguments passed to the javac compiler, and the dependencies to include during compilation. Here are the additional parameters:
+This class has additional fields that allow you to configure the command-line arguments passed to the javac compiler and the dependencies to include during compilation. Here are the additional parameters:
 
-### Compiler Arguments
+### Compiler arguments
 
-You can specify additional parameters to the Java compiler using the **compilerArguments** field on the settings class. Here is an example:
+You can specify additional parameters to the Java compiler using the `compilerArguments` field on the settings class. Here is an example:
 
 ~~~~ groovy
 java.settings.compilerArguments = "-g"
 ~~~~ 
 
-This will enable debug information be included by the Java compiler. This is actually the default setting for this field.
+This is the default setting for this field, and it specifies that debug information should be included by the Java compiler.
 
-### Doc Arguments
+### Doc arguments
 
-You can specify additional parameters to the Java doc generator using the **docArguments** field on the settings class. Here is an example:
+You can specify additional parameters to the Javadoc generator using the `docArguments` field on the settings class. Here is an example:
 
 ~~~~ groovy
 java.settings.docArguments = "-footer '<span>Copyright 2014 My Company</span>'"
 ~~~~ 
 
-### Additional Library Directories
+### JVM arguments
 
-In some cases, you don't have access to a Savant repository that contains certain JAR files that you need for compilation. The best practice is to add the missing JAR files to a Savant repository and use Savant's dependency management system to manage them. However, some 3rd party JAR files might have unknown transitive dependencies. Rather than trying to figure out all of these complex dependencies, Savant provides you with a simple way to include additional JARs in the compile time classpath. You can specify 1 or more directories that contain JAR files and Savant will include all of the JAR files in the classpath. Here is an example:
+You can specify additional JVM arguments when running Java tools using the `jvmArguments` field on the settings class. Here is an example:
+
+~~~~ groovy
+java.settings.jvmArguments = "-Xmx512m"
+~~~~
+
+### Additional library directories
+
+In some cases, you don't have access to a Savant repository that contains certain JAR files that you need for compilation. The best practice is to add the missing JAR files to a Savant repository and use Savant's dependency management system to manage them. However, some third party JAR files might have unknown transitive dependencies. Rather than trying to figure out all of these complex dependencies, Savant provides you with a simple way to include additional JARs in the compile time classpath. You can specify one or more directories that contain JAR files, and Savant will include all the JAR files in the classpath. Here is an example:
 
 ~~~~ groovy
 java.settings.libraryDirectories = ["lib"]
 ~~~~ 
 
-### Compile Dependencies
+### Compile dependencies
 
-You can change the dependencies that are included in the classpath during compilation. This is an advanced setting and should be only used in very special cases. This setting controlled by the **mainDependencies** and **testDependencies** fields. This fields are a List of Maps. Each Map defines a dependency group to include and also whether or not transitive dependencies are included and what transitive dependency groups are also included. Here is an example:
+You can change the dependencies that are included in the classpath during compilation. This is an advanced setting and should be only used in special cases. This setting is controlled by the `mainDependencies` and `testDependencies` fields. These fields are a List of Maps. Each Map defines a dependency group to include, whether transitive dependencies are included, and what transitive dependency groups are also included. Here is an example:
 
 ~~~~ groovy
 java.settings.mainDependencies = [
@@ -120,20 +125,20 @@ java.settings.testDependencies =  [
 
 ~~~~ 
 
-This defines that the project's **compile** and **provided** dependency groups should be included when the main classes are compiled but transitive dependencies are not included. Likewise, this includes the **compile**, **test-compile** and **provided** dependency groups are included when the test classes are compiled, but transitive dependencies are not. This is the default setting and should be used in almost every project, but you can modify these setting if necessary. If you choose to change these definitions, the attributes you can specify for dependency definitions are:
+This defines that the project's `compile` and `provided` dependency groups should be included when the main classes are compiled but transitive dependencies are not included. Likewise, the `compile`, `test-compile` and `provided` dependency groups are included when the test classes are compiled, but transitive dependencies are not. This is the default setting and should be used in most projects, but you can modify these settings if necessary. If you choose to change these definitions, the attributes you can specify for dependency definitions are:
 
-| name | description | type | required |
-| ---- | ----------- | ---- | -------- |
-| group | The dependency group to include | String | true |
-| transitive | Determines if transitive dependencies are included or not | boolean | true |
-| fetchSource | Determines if the source for the dependencies or downloaded or not | boolean | true |
-| transitiveGroups | The transitive dependency groups to fetch. This is only used if transitive is set to true | List\<String> | false |
+| name             | description                                                                               | type          | required |
+|------------------|-------------------------------------------------------------------------------------------|---------------|----------|
+| group            | The dependency group to include                                                           | String        | true     |
+| transitive       | Determines if transitive dependencies are included or not                                 | boolean       | true     |
+| fetchSource      | Determines if the source for the dependencies or downloaded or not                        | boolean       | true     |
+| transitiveGroups | The transitive dependency groups to fetch. This is only used if transitive is set to true | List\<String> | false    |
 
-### JAR Manifest
+### JAR manifest
 
 You can control the manifest attributes for the JAR file that the Java plugin builds for your project. This plugin ensures that these manifest attributes are always set:
 
-* Manifest-Version - this is set to **1.0**
+* Manifest-Version - this is set to `1.0`
 * Implementation-Version - this is set to the project version
 * Implementation-Vendor - this is set to the group and name of the project concatenated together with a dot separator
 * Specification-Version - this is set to the project version
@@ -146,44 +151,68 @@ groovy.settings.jarManifest = [
     "Implementation-Vendor": "My Company",
     "Specification-Vendor": "My Company",
     "Main-Class": "com.mycompany.Main"
-  ]
+]
 ~~~~ 
-
 
 ## Compiling
 
-The **compile** method on the Java plugin allows you to compile the Java source files. This compiles both the main and test source files in the project and it also copies the main and test resource files to the build directory. Here's an example of calling this method:
+The `compile` method on the Java plugin allows you to compile the Java source files. This compiles both the main and test source files in the project. It also copies the main and test resource files to the build directory. Here's an example of calling this method:
 
 ~~~~ groovy
 java.compile()
 ~~~~ 
 
-You an also compile the main or test source files separately using the *compileMain** and **compileTest** methods like this:
+You can also compile the main or test source files separately using the `compileMain` and `compileTest` methods like this:
 
 ~~~~ groovy
 java.compileMain()
 java.compileTest()
 ~~~~ 
 
+## Documenting
 
-## Jarring
+The `document` method on the Java plugin generates Javadoc for your project. The output is placed in the project's configured doc directory as outlined above. Here is an example:
 
-The **jar** method on the Java plugin allows you to build the project Jar files. This produces two Jar files, the main Jar and the test Jar. The main Jar contains all of the files from the **build/classes/main** directory and the test Jar file contains all of the files from the **build/classes/test** directory. Here is an example of using this method.
+~~~~ groovy
+java.document()
+~~~~
+
+## JARring
+
+The `jar` method on the Java plugin allows you to build the project JAR files. This produces three JAR files, the main JAR, the test JAR, and a sources JAR file. The main JAR contains all the files from the `build/classes/main` directory. The test JAR file contains all the files from the `build/classes/test` directory. And the source JAR file contains the source files from the `src/java/main` directory. Here is an example of using this method.
 
 ~~~~ groovy
 java.jar()
 ~~~~ 
 
-
 ## Cleaning
 
-The **clean** method on the Java plugin simply deletes the **build** directory. Here's an example of using this method:
+The `clean` method on the Java plugin deletes the entire `build` directory. Here's an example of using this method:
 
 ~~~~ groovy
 java.clean()
-~~~~ 
+~~~~
 
+## Advanced usage
 
-## Advanced Usage
+The Java plugin provides additional methods for advanced use cases:
 
-The Java plugin also defines a few more advanced methods for compiling Java files in any directory to any directory or copying resources from any directory, to any directory. Refer to the JavaDoc of the plugin for more information.
+### Main classpath
+
+You can retrieve the main classpath for the project using the `getMainClasspath` method. This returns a classpath string that includes all the `compile`, `runtime`, and `provided` dependencies:
+
+~~~~ groovy
+String cp = java.getMainClasspath()
+~~~~
+
+### JarJar
+
+The `jarjar` method allows you to shade and repackage dependencies using `JarJar`. This is useful when you need to bundle dependencies into your JAR with relocated packages to avoid conflicts:
+
+~~~~ groovy
+java.jarjar(dependencyGroup: "compile") {
+  rule(from: "org.example.**", to: "com.mycompany.shaded.org.example.@1")
+}
+~~~~
+
+The `dependencyGroup` attribute specifies which dependency group to shade. Inside the closure, use the `rule` method to define package relocation rules with `from` and `to` attributes.

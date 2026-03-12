@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', function() {
   // Build TOC from h2 and h3 elements
   var headings = content.querySelectorAll('h2, h3');
   if (headings.length === 0) {
-    document.getElementById('toc-sidebar').style.display = 'none';
     return;
   }
 

@@ -6,48 +6,50 @@ plugin: true
 plugin_name: IDEA
 ---
 
-The IDEA plugins allows you to update your IntelliJ IDEA project files when your project's dependencies change. This plugin does not currently generate IntelliJ IDEA project files. Pull requests for additional features are welcome though. ;)
+The IDEA plugin allows you to update your IntelliJ IDEA module file (IML) when your project's dependencies change. This plugin does not currently generate IntelliJ IDEA project files (IPR).
 
-**LATEST VERSION: 1.0.1**
+**LATEST VERSION: 2.0.0**
 
-
-## Loading the Plugin
+## Loading the plugin
 
 Here is how you load this plugin:
 
 ~~~~ groovy
-idea = loadPlugin(id: "org.savantbuild.plugin:idea:1.0.1")
+idea = loadPlugin(id: "org.savantbuild.plugin:idea:2.0.0")
 ~~~~ 
-
 
 ## Settings
 
-The IDEA provides a couple of settings that help you control how it behaves. None of these settings are required though.
+The IDEA provides a couple of settings that help you control how it behaves. None of these settings are required.
 
-### IML File
-The first setting changes the **.iml** that the plugin updates. Some projects have different names than the **.iml** file and this setting allows you to configure the file to use. Here is an example:
+### IML file
+The first setting changes the `.iml` that the plugin updates. Some projects have different names than the `.iml` file and this setting allows you to configure the file to use. Here is an example:
 
 ~~~~ groovy
 idea.settings.imlFile = "foobar.iml"
 ~~~~ 
 
-You can also specify the setting using the Java Path object like this:
+You can also specify the setting using the Java `Path` object like this:
 
 ~~~~ groovy
 idea.settings.imlFile = Paths.get("foobar.iml")
 ~~~~ 
 
-### Module Dependencies
+### Module dependencies
 
-The other setting is more complex, but very powerful. If you have a IntelliJ IDEA project that consists of multiple modules and there are inter-module dependencies, IntelliJ allows you to specify module-to-module dependencies. This helps with compilation and refactoring. However, Savant does not how the knowledge of inter-project dependencies except via **integration builds** and standard project dependencies. Therefore, you need to tell the IDEA plugin which of your project's dependencies are actually module dependencies in the **.iml** file. This is done like this:
+The other setting is more complex but very powerful. If you have an IntelliJ IDEA project that consists of multiple modules and there are inter-module dependencies, IntelliJ allows you to specify module-to-module dependencies. This helps with compilation and refactoring. However, Savant does not have the knowledge of inter-project dependencies except via **integration builds** and standard project dependencies. Therefore, you need to tell the IDEA plugin which of your project's dependencies are actually module dependencies in the `.iml` file.
+
+This is done like this:
 
 ~~~~ groovy
-idea.settings.moduleMap = ["com.mycompany:some-other-project:1.0.0-{integration}":"some-other-project"]
+idea.settings.moduleMap = [
+    "com.mycompany:some-other-project:1.0.0-{integration}" : "some-other-project"
+]
 ~~~~ 
 
-What this tells the plugin is that the dependency **com.mycompany:some-other-project:1.0.0-{integration}** is really on the project module **some-other-project**.
+What this tells the plugin is that the dependency `com.mycompany:some-other-project:1.0.0-{integration}` is really on the project module `some-other-project`.
 
-### Dependency Groups
+### Dependency groups
 
 The final setting you can change is the dependenciesMap setting. This setting controls how Savant dependency groups map to IntelliJ IDEA scopes and how dependencies are fetched. Here is the default value for this setting:
 
@@ -70,12 +72,11 @@ idea.settings.dependenciesMap = [
 ]
 ~~~~ 
 
-This setting tells the plugin that the IntelliJ IDEA scope **PROVIDED** should map to the Savant dependency group **provided** and that the plugin should fetch transitive dependencies in the groups **provided**, **compile**, and **runtime**. Additionally, the IntelliJ IDEA scope **COMPILE** should map to the Savant dependency group **compile** and that transitive dependencies for this group should NOT be fetched. Furthermore, all of these mappings instruct the plugin to always fetch source. This allows IntelliJ IDEA to index the source so that you can jump between your code and the source for the libraries you use.
+This setting tells the plugin that the IntelliJ IDEA scope `PROVIDED` should map to the Savant dependency group `provided` and that the plugin should fetch transitive dependencies in the groups `provided`, `compile`, and `runtime`. Additionally, the IntelliJ IDEA scope `COMPILE` should map to the Savant dependency group `compile` and that transitive dependencies for this group should NOT be fetched. Furthermore, all of these mappings instruct the plugin to always fetch source JARs. This allows IntelliJ IDEA to index the source so that you can jump between your code and the source for the libraries you use.
 
+## Updating the IML file
 
-## Updating the IML File
-
-This plugin provides a single method to update the project's **.iml** file. Here is how you call this method:
+This plugin provides a single method to update the project's `.iml` file. Here is how you call this method:
 
 ~~~~ groovy
 idea.iml()
