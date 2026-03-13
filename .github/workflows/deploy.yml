@@ -44,6 +44,12 @@ jobs:
         env:
           JEKYLL_ENV: production
 
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Generate OG images
+        run: npm run generate:og
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

@@ -4,11 +4,13 @@
   "scripts": {
     "build:css": "postcss css/main.css -o css/styles.css",
     "watch:css": "postcss css/main.css -o css/styles.css --watch",
-    "dev": "concurrently \"npm run watch:css\" \"bundle exec jekyll serve --livereload\""
+    "dev": "concurrently \"npm run watch:css\" \"bundle exec jekyll serve --livereload\"",
+    "generate:og": "node scripts/generate-og-images.js"
   },
   "devDependencies": {
     "autoprefixer": "^10.4",
     "concurrently": "^9.1",
+    "playwright": "^1.58.2",
     "postcss": "^8.5.8",
     "postcss-cli": "^11.0",
     "postcss-import": "^16.1.1",

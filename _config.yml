@@ -24,3 +24,4 @@ exclude:
   - Gemfile.lock
   - README.md
   - .claude
+  - scripts
