@@ -16,7 +16,7 @@ Welcome to the Savant documentation. Use the sidebar to navigate between topics.
 
 ## API reference (JavaDoc)
 
-- [Savant Core](javadoc/savant-core/docs/)
-- [Savant Dependency Management](javadoc/savant-dependency-management/docs/)
-- [Savant IO](javadoc/savant-io/docs/)
-- [Savant Utils](javadoc/savant-utils/docs/)
+- [Savant Core](javadoc/savant-core/)
+- [Savant Dependency Management](javadoc/savant-dependency-management/)
+- [Savant IO](javadoc/savant-io/)
+- [Savant Utils](javadoc/savant-utils/)
